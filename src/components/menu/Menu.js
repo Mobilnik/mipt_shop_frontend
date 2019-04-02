@@ -1,12 +1,17 @@
 import React from 'react';
 import OrderList from "../orders/OrderList";
-import {BrowserRouter, Route} from "react-router-dom";
+import {BrowserRouter, NavLink, Route} from "react-router-dom";
 
 const Menu = () => {
     return (
-        <BrowserRouter>
-            <Route path='orders' component={OrderList}/>
-        </BrowserRouter>
+        <nav>
+            <div>
+                <NavLink to='/orders'> Orders </NavLink>
+            </div>
+            <div>
+                <NavLink to='/goods'> Goods </NavLink>
+            </div>
+        </nav>
     )
 };
 

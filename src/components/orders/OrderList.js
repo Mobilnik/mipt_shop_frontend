@@ -1,6 +1,5 @@
 import React from 'react';
 import OrderItem from "./OrderItem";
-import {NavLink} from "react-router-dom";
 
 let orderItems = [
     {
@@ -19,14 +18,12 @@ let orderItems = [
 
 const OrderList = (props) => {
     return (
-        <nav>
-            <NavLink to='orders'>
-                <OrderItem id={orderItems[0].id} userId={orderItems[0].userId}
-                           status={orderItems[0].status} changeDateTime={orderItems[0].changeDateTime}/>
-                <OrderItem id={orderItems[1].id} userId={orderItems[1].userId}
-                           status={orderItems[1].status} changeDateTime={orderItems[1].changeDateTime}/>
-            </NavLink>
-        </nav>
+        <div>
+            <OrderItem id={orderItems[0].id} userId={orderItems[0].userId}
+                       status={orderItems[0].status} changeDateTime={orderItems[0].changeDateTime}/>
+            <OrderItem id={orderItems[1].id} userId={orderItems[1].userId}
+                       status={orderItems[1].status} changeDateTime={orderItems[1].changeDateTime}/>
+        </div>
     )
 };
 
