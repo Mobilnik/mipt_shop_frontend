@@ -3,8 +3,11 @@ import CartItem from "./CartItem";
 
 const Cart = (props) => {
     let cartItems = props.state.cartItems
-        .map(cartItem => <CartItem goodId={cartItem.quantity}
-                                   quantity={cartItem.quantity}/>);
+        .map((cartItem, index) => <CartItem index={index}
+                                   goodId={cartItem.goodId}
+                                   quantity={cartItem.quantity}
+                                   increaseCartItemQuantity={props.increaseCartItemQuantity}
+                                   decreaseCartItemQuantity={props.decreaseCartItemQuantity}/>);
 
     return (
         <div>

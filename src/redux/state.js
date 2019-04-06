@@ -1,4 +1,6 @@
 //функциии, меняющие state, должны находиться в state
+import {rerenderEntireTree} from "../render";
+
 let state = {
     ordersPage: {
         orders: [
@@ -48,4 +50,16 @@ let state = {
     }
 };
 
-export default state
+export const increaseCartItemQuantity = (cartItemIdx) => {
+    state.cartPage.cartItems[cartItemIdx].quantity++;
+    rerenderEntireTree();
+};
+
+export const decreaseCartItemQuantity = (cartItemIdx) => {
+    state.cartPage.cartItems[cartItemIdx].quantity--;
+    rerenderEntireTree();
+};
+
+
+
+export default state;

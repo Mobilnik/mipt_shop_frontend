@@ -3,22 +3,16 @@ import styles from './CartItem.module.css'
 
 const CartItem = (props) => {
     //React связывает DOM и VirtualDOM
-   /* const increaseQuanty = () => {
-        props.quantity++;
-    };
-
-    const decreaseQuanty = () => {
-        props.quantity++;
-    };*/
-
     return (
         <div className={`${styles.cartItem} ${styles.textColor}`}>
+            index: {props.index}
+            <br/>
             goodId: {props.goodId}
             <br/>
             quantity: {props.quantity}
             <br/>
-            <button onClick={increaseQuanty}>+</button>
-            <button onClick={decreaseQuanty}>-</button>
+            <button onClick={() => props.increaseCartItemQuantity(props.index)}>+</button>
+            <button onClick={() => props.decreaseCartItemQuantity(props.index)}>-</button>
             <br/>
         </div>
     );
