@@ -9,8 +9,8 @@ const MyApp = (props) => {
         <BrowserRouter>
             <Menu/>
             <div>
-                <Route path='/orders' render={() => <OrderList orders = {props.orders} />}/>
-                <Route path='/goods' render={() => <GoodList goods = {props.goods} />}/>
+                <Route path='/orders' render={() => <OrderList state = {props.state.ordersPage} />}/>
+                <Route path='/goods' render={() => <GoodList state = {props.state.goodsPage} />}/>
             </div>
         </BrowserRouter>
     );

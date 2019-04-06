@@ -2,8 +2,7 @@ import React from 'react';
 import OrderItem from "./OrderItem";
 
 const OrderList = (props) => {
-
-    let orders = props.orders
+    let orders = props.state.orders
         .map(order => <OrderItem id={order.id}
                                  userId={order.userId}
                                  status={order.status}
