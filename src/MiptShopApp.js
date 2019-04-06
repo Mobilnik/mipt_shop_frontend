@@ -14,7 +14,9 @@ const MiptShopApp = (props) => {
                 <Route path='/goods' render={() => <GoodList state={props.state.goodsPage}/>}/>
                 <Route path='/cart' render={() => <Cart state={props.state.cartPage}
                                                         increaseCartItemQuantity={props.increaseCartItemQuantity}
-                                                        decreaseCartItemQuantity={props.decreaseCartItemQuantity}/>}/>
+                                                        decreaseCartItemQuantity={props.decreaseCartItemQuantity}
+                                                        updateCartOrderComment={props.updateCartOrderComment}
+                                                        createNewOrderFromCart ={props.createNewOrderFromCart}/>}/>
             </div>
         </div>
     );

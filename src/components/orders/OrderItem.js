@@ -12,6 +12,8 @@ const OrderItem = (props) => {
             <br/>
             changeDateTime: {props.changeDateTime}
             <br/>
+            comment: {props.comment}
+            <br/>
             <br/>
         </div>
     )

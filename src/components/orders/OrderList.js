@@ -6,7 +6,8 @@ const OrderList = (props) => {
         .map(order => <OrderItem id={order.id}
                                  userId={order.userId}
                                  status={order.status}
-                                 changeDateTime={order.changeDateTime}/>);
+                                 changeDateTime={order.changeDateTime}
+                                 comment={order.comment}/>);
 
     return (
         <div>
