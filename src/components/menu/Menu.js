@@ -10,6 +10,9 @@ const Menu = () => {
             <div>
                 <NavLink to='/goods'> Goods </NavLink>
             </div>
+            <div>
+                <NavLink to='/cart'> My Cart </NavLink>
+            </div>
         </nav>
     )
 };

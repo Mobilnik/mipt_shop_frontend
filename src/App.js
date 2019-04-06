@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import MyApp from './components/MyApp.js'
 
 const App = (props) =>  {

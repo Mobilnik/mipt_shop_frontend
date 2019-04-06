@@ -1,4 +1,5 @@
-let state =  {
+//функциии, меняющие state, должны находиться в state
+let state = {
     ordersPage: {
         orders: [
             {
@@ -29,6 +30,19 @@ let state =  {
                 name: "Milk",
                 photo: "photo 2",
                 price: 45.6
+            },
+        ]
+    },
+
+    cartPage: {
+        cartItems: [
+            {
+                goodId: 1,
+                quantity: 2
+            },
+            {
+                goodId: 2,
+                quantity: 3
             },
         ]
     }
