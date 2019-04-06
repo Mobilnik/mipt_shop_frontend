@@ -1,5 +1,8 @@
-//функциии, меняющие state, должны находиться в state
-import {rerenderEntireTree} from "../render";
+let rerenderEntireTree;
+
+export const subscribe = (observer) => {
+    rerenderEntireTree = observer;
+};
 
 let state = {
     userId: 1,
