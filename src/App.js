@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import MyApp from './components/MyApp.js'
 
-const App = () =>  {
+const App = (props) =>  {
     return (
         <div>
-            <MyApp />
+            <MyApp goods = {props.goods} orders = {props.orders}/>
         </div>
     )
 }

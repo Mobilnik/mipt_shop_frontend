@@ -4,13 +4,13 @@ import Menu from "./menu/Menu";
 import {BrowserRouter, Route} from "react-router-dom";
 import GoodList from "./goods/GoodList";
 
-const MyApp = () => {
+const MyApp = (props) => {
     return (
         <BrowserRouter>
             <Menu/>
             <div>
-                <Route path='/orders' component={OrderList}/>
-                <Route path='/goods' component={GoodList}/>
+                <Route path='/orders' render={() => <OrderList orders = {props.orders} />}/>
+                <Route path='/goods' render={() => <GoodList goods = {props.goods} />}/>
             </div>
         </BrowserRouter>
     );
