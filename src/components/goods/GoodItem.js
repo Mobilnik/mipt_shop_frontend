@@ -6,11 +6,11 @@ const GoodItem = (props) => {
         <div className={`${styles.orderItem} ${styles.textColor}`}>
             id: {props.id}
             <br/>
-            userId: {props.userId}
+            name: {props.name}
             <br/>
-            status: {props.status}
+            photo: {props.photo}
             <br/>
-            changeDateTime: {props.changeDateTime}
+            price: {props.price}
             <br/>
             <br/>
         </div>

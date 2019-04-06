@@ -16,13 +16,17 @@ let orderItems = [
     },
 ];
 
+let orders = orderItems
+    .map(order => <OrderItem id={order.id}
+                             userId={order.userId}
+                             status={order.status}
+                             changeDateTime={order.changeDateTime}/>);
+
+
 const OrderList = (props) => {
     return (
         <div>
-            <OrderItem id={orderItems[0].id} userId={orderItems[0].userId}
-                       status={orderItems[0].status} changeDateTime={orderItems[0].changeDateTime}/>
-            <OrderItem id={orderItems[1].id} userId={orderItems[1].userId}
-                       status={orderItems[1].status} changeDateTime={orderItems[1].changeDateTime}/>
+            {orders}
         </div>
     )
 };
