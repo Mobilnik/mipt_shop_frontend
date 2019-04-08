@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './CartItem.module.css'
-import {decreaseCartItemActionCreator, increaseCartItemActionCreator} from "../../redux/state";
+import {decreaseCartItemActionCreator, increaseCartItemActionCreator} from "../../redux/cartReducer";
 
 const CartItem = (props) => {
     //React связывает DOM и VirtualDOM

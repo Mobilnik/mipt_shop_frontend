@@ -1,6 +1,6 @@
 import React from 'react';
 import CartItem from "./CartItem";
-import {createNewOrderActionCreator, updateCartOrderCommentActionCreator} from "../../redux/state";
+import {createNewOrderActionCreator, updateCartOrderCommentActionCreator} from "../../redux/cartReducer";
 
 const Cart = (props) => {
 

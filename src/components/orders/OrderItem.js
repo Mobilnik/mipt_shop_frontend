@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './OrderItem.module.css'
+import DeleteUnprocessedOrderButton from "./DeleteUnprocessedOrderButton";
 
 const OrderItem = (props) => {
     return (
@@ -14,6 +15,9 @@ const OrderItem = (props) => {
             <br/>
             comment: {props.comment}
             <br/>
+            <DeleteUnprocessedOrderButton status={props.status}
+                                          dispatch={props.dispatch}
+            />
             <br/>
         </div>
     )

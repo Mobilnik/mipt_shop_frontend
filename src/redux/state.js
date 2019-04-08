@@ -1,13 +1,14 @@
+import cartReducer from "./cartReducer";
+import ordersReducer from "./ordersReducer";
+
 let store = {
     _state: {
-        userId: 1,
-
         ordersPage: {
             orders: [
                 {
                     id: 1,
                     userId: 1,
-                    status: 1,
+                    status: 0,
                     changeDateTime: '2019-03-21 23:00:43.573000',
                     comment: "Я глупый коммент №1",
                     goods: [
@@ -78,90 +79,10 @@ let store = {
         this._callSubscriber = observer;
     },
 
-
-    //Функции, меняющие данные. Только функции, определенные в state, могут его менять
-    increaseCartItemQuantity(cartItemIdx) {
-        this._state.cartPage.cartItems[cartItemIdx].quantity++;
-        this._callSubscriber();
-    },
-
-    decreaseCartItemQuantity(cartItemIdx) {
-        this._state.cartPage.cartItems[cartItemIdx].quantity--;
-
-        this._callSubscriber();
-    },
-
-    updateCartOrderComment(newText) {
-        this._state.cartPage.cartOrderComment = newText;
-        this._callSubscriber();
-    },
-
-    createNewOrderFromCart() {
-        let order = {
-            id: 3,
-            userId: this._state.userId,
-            status: 0,
-            changeDateTime: new Date().getUTCDate(),
-            comment: this._state.cartPage.cartOrderComment,
-            goods: this._state.cartPage.cartItems
-        };
-        this._state.ordersPage.orders.push(order);
-
-        this._state.cartPage.cartItems = [];
-        this._state.cartPage.cartOrderComment = "";
-
-        this._callSubscriber();
-    },
-
     dispatch(action) {
-        switch (action.type) {
-            case 'INCREASE-CART-ITEM-QUANTITY':
-                this.increaseCartItemQuantity(action.cartItemIdx);
-                break;
-            case 'DECREASE-CART-ITEM-QUANTITY':
-                this.decreaseCartItemQuantity(action.cartItemIdx);
-                break;
-            case 'UPDATE-CART-ORDER-COMMENT':
-                this.updateCartOrderComment(action.newText);
-                break;
-            case 'CREATE-NEW-ORDER-FROM-CART':
-                this.createNewOrderFromCart();
-                break;
-            default:
-                return;
-        }
-    }
-};
-
-const INCREASE_CART_ITEM_QUANTITY = 'INCREASE-CART-ITEM-QUANTITY';
-const DECREASE_CART_ITEM_QUANTITY = 'DECREASE-CART-ITEM-QUANTITY';
-const UPDATE_CART_ORDER_COMMENT = 'UPDATE-CART-ORDER-COMMENT';
-const CREATE_NEW_ORDER_FROM_CART = 'CREATE-NEW-ORDER-FROM-CART';
-
-export const increaseCartItemActionCreator = (cartItemIdx) => {
-    return {
-        type: INCREASE_CART_ITEM_QUANTITY,
-        cartItemIdx: cartItemIdx
-    }
-};
-
-export const decreaseCartItemActionCreator = (cartItemIdx) => {
-    return {
-        type: DECREASE_CART_ITEM_QUANTITY,
-        cartItemIdx: cartItemIdx
-    }
-};
-
-export const updateCartOrderCommentActionCreator = (newText) => {
-    return {
-        type: UPDATE_CART_ORDER_COMMENT,
-        newText: newText
-    }
-};
-
-export const createNewOrderActionCreator = () => {
-    return {
-        type: CREATE_NEW_ORDER_FROM_CART
+        this._state.cartPage = cartReducer(this._state.cartPage, action);
+        this._state.ordersPage = ordersReducer(this._state.ordersPage, action);
+        this._callSubscriber();
     }
 };
 
