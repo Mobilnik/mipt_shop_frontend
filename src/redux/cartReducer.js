@@ -3,7 +3,21 @@ const DECREASE_CART_ITEM_QUANTITY = 'DECREASE-CART-ITEM-QUANTITY';
 const UPDATE_CART_ORDER_COMMENT = 'UPDATE-CART-ORDER-COMMENT';
 const CREATE_NEW_ORDER_FROM_CART = 'CREATE-NEW-ORDER-FROM-CART';
 
-const cartReducer = (state, action) => {
+let initialState = {
+    cartItems: [
+        {
+            goodId: 1,
+            quantity: 2
+        },
+        {
+            goodId: 2,
+            quantity: 3
+        },
+    ],
+    cartOrderComment: ""
+};
+
+const cartReducer = (state = initialState, action) => {
     switch (action.type) {
         case INCREASE_CART_ITEM_QUANTITY:
             increaseCartItemQuantity(state, action.cartItemIdx);
@@ -49,7 +63,7 @@ const createNewOrderFromCart = (state) => {
         comment: state.cartOrderComment,
         goods: state.cartItems
     };
-    state.orders.push(order);
+    //fixme state.orders.push(order);
 
     state.cartItems = [];
     state.cartOrderComment = "";
