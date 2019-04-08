@@ -1,5 +1,6 @@
 import React from 'react';
 import CartItem from "./CartItem";
+import {createNewOrderActionCreator, updateCartOrderCommentActionCreator} from "../../redux/state";
 
 const Cart = (props) => {
 
@@ -13,11 +14,11 @@ const Cart = (props) => {
 
     const onCartOrderCommentChange = () => {
         let newText = cartOrderComment.current.value;
-        props.dispatch({type: 'UPDATE-CART-ORDER-COMMENT', newText: newText})
+        props.dispatch(updateCartOrderCommentActionCreator(newText))
     };
 
     const saveCartToOrder = () => {
-        props.dispatch({type: 'CREATE-NEW-ORDER-FROM-CART'});
+        props.dispatch(createNewOrderActionCreator());
     };
 
     return (

@@ -133,5 +133,36 @@ let store = {
     }
 };
 
+const INCREASE_CART_ITEM_QUANTITY = 'INCREASE-CART-ITEM-QUANTITY';
+const DECREASE_CART_ITEM_QUANTITY = 'DECREASE-CART-ITEM-QUANTITY';
+const UPDATE_CART_ORDER_COMMENT = 'UPDATE-CART-ORDER-COMMENT';
+const CREATE_NEW_ORDER_FROM_CART = 'CREATE-NEW-ORDER-FROM-CART';
+
+export const increaseCartItemActionCreator = (cartItemIdx) => {
+    return {
+        type: INCREASE_CART_ITEM_QUANTITY,
+        cartItemIdx: cartItemIdx
+    }
+};
+
+export const decreaseCartItemActionCreator = (cartItemIdx) => {
+    return {
+        type: DECREASE_CART_ITEM_QUANTITY,
+        cartItemIdx: cartItemIdx
+    }
+};
+
+export const updateCartOrderCommentActionCreator = (newText) => {
+    return {
+        type: UPDATE_CART_ORDER_COMMENT,
+        newText: newText
+    }
+};
+
+export const createNewOrderActionCreator = () => {
+    return {
+        type: CREATE_NEW_ORDER_FROM_CART
+    }
+};
 
 export default store;

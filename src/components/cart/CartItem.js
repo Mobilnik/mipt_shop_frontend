@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './CartItem.module.css'
+import {decreaseCartItemActionCreator, increaseCartItemActionCreator} from "../../redux/state";
 
 const CartItem = (props) => {
     //React связывает DOM и VirtualDOM
@@ -11,10 +12,10 @@ const CartItem = (props) => {
             <br/>
             quantity: {props.quantity}
             <br/>
-            <button onClick={() => props.dispatch({type: 'INCREASE-CART-ITEM-QUANTITY', cartItemIdx: props.index})}>
+            <button onClick={() => props.dispatch(increaseCartItemActionCreator(props.index))}>
                 +
             </button>
-            <button onClick={() => props.dispatch({type: 'DECREASE-CART-ITEM-QUANTITY', cartItemIdx: props.index})}>
+            <button onClick={() => props.dispatch(decreaseCartItemActionCreator(props.index))}>
                 -
             </button>
             <br/>
