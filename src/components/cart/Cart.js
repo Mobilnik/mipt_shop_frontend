@@ -10,10 +10,8 @@ const Cart = (props) => {
                                             quantity={cartItem.quantity}
                                             dispatch={props.dispatch}/>);
 
-    let cartOrderComment = React.createRef();
-
-    const onCartOrderCommentChange = () => {
-        let newText = cartOrderComment.current.value;
+    const onCartOrderCommentChange = (event) => {
+        let newText = event.target.value;
         props.dispatch(updateCartOrderCommentActionCreator(newText))
     };
 
@@ -24,10 +22,10 @@ const Cart = (props) => {
     return (
         <div>
             {cartItems}
-            <textarea ref={cartOrderComment}
-                      placeholder={'Order comment'}
+            <textarea value={props.state.cartOrderComment}
                       onChange={onCartOrderCommentChange}
-                      value={props.state.cartOrderComment}/>
+                      placeholder={'Order comment'}
+            />
             <button onClick={saveCartToOrder}>Save</button>
         </div>
     )
