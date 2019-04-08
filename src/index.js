@@ -2,27 +2,18 @@ import React from "react";
 import ReactDOM from "react-dom";
 import {BrowserRouter} from "react-router-dom";
 import MiptShopApp from "./MiptShopApp";
-import state, {
-    subscribe,
-    createNewOrderFromCart,
-    decreaseCartItemQuantity,
-    increaseCartItemQuantity,
-    updateCartOrderComment
-} from "./redux/state.js";
+import store from "./redux/state.js";
 
 
-const rerenderEntireTree = () => {
+const rerenderEntireTree = (state) => {
 
     ReactDOM.render(
         <BrowserRouter>
-            <MiptShopApp state={state}
-                         increaseCartItemQuantity={increaseCartItemQuantity}
-                         decreaseCartItemQuantity={decreaseCartItemQuantity}
-                         updateCartOrderComment={updateCartOrderComment}
-                         createNewOrderFromCart={createNewOrderFromCart}/>
+            <MiptShopApp state={store.getState()}
+                         dispatch={store.dispatch.bind(store)}/>
         </BrowserRouter>, document.getElementById('root')
     );
 };
 
-rerenderEntireTree();
-subscribe(rerenderEntireTree);
+rerenderEntireTree(store.getState());
+store.subscribe(rerenderEntireTree);

@@ -7,18 +7,17 @@ const Cart = (props) => {
         .map((cartItem, index) => <CartItem index={index}
                                             goodId={cartItem.goodId}
                                             quantity={cartItem.quantity}
-                                            increaseCartItemQuantity={props.increaseCartItemQuantity}
-                                            decreaseCartItemQuantity={props.decreaseCartItemQuantity}/>);
+                                            dispatch={props.dispatch}/>);
 
     let cartOrderComment = React.createRef();
 
     const onCartOrderCommentChange = () => {
-        let text = cartOrderComment.current.value;
-        props.updateCartOrderComment(text)
+        let newText = cartOrderComment.current.value;
+        props.dispatch({type: 'UPDATE-CART-ORDER-COMMENT', newText: newText})
     };
 
     const saveCartToOrder = () => {
-        props.createNewOrderFromCart();
+        props.dispatch({type: 'CREATE-NEW-ORDER-FROM-CART'});
     };
 
     return (

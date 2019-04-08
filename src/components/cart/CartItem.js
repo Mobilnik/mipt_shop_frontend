@@ -11,8 +11,12 @@ const CartItem = (props) => {
             <br/>
             quantity: {props.quantity}
             <br/>
-            <button onClick={() => props.increaseCartItemQuantity(props.index)}>+</button>
-            <button onClick={() => props.decreaseCartItemQuantity(props.index)}>-</button>
+            <button onClick={() => props.dispatch({type: 'INCREASE-CART-ITEM-QUANTITY', cartItemIdx: props.index})}>
+                +
+            </button>
+            <button onClick={() => props.dispatch({type: 'DECREASE-CART-ITEM-QUANTITY', cartItemIdx: props.index})}>
+                -
+            </button>
             <br/>
         </div>
     );
