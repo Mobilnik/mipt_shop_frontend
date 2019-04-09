@@ -1,23 +1,23 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import {BrowserRouter} from "react-router-dom";
-import MiptShopApp from "./MiptShopApp";
+import {Provider} from "react-redux";
 import store from "./redux/redux-store.js";
+import MiptShopApp from "./MiptShopApp";
 
-
-const rerenderEntireTree = (state) => {
+const rerenderEntireTree = () => {
 
     ReactDOM.render(
         <BrowserRouter>
-            <MiptShopApp state={store.getState()}
-                         dispatch={store.dispatch.bind(store)}/>
+            <Provider store={store}>
+                <MiptShopApp/>
+            </Provider>
         </BrowserRouter>, document.getElementById('root')
     );
 };
 
-rerenderEntireTree(store.getState());
+rerenderEntireTree();
 
 store.subscribe(() => {
-    let state = store.getState();
-    rerenderEntireTree(state);
+    rerenderEntireTree();
 });

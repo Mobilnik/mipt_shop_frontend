@@ -2,7 +2,7 @@ import React from 'react';
 import GoodItem from "./GoodItem";
 
 const GoodList = (props) => {
-    let goods = props.state.goods
+    let goods = props.goods
         .map(good => <GoodItem id={good.id}
                                name={good.name}
                                photo={good.photo}

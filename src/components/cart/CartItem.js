@@ -1,9 +1,8 @@
 import React from 'react';
 import styles from './CartItem.module.css'
-import {decreaseCartItemActionCreator, increaseCartItemActionCreator} from "../../redux/cartReducer";
 
 const CartItem = (props) => {
-    //React связывает DOM и VirtualDOM
+    console.log(props);
     return (
         <div className={`${styles.cartItem} ${styles.textColor}`}>
             index: {props.index}
@@ -12,10 +11,10 @@ const CartItem = (props) => {
             <br/>
             quantity: {props.quantity}
             <br/>
-            <button onClick={() => props.dispatch(increaseCartItemActionCreator(props.index))}>
+            <button onClick={() => props.increaseCartItemQuantity(props.index)}>
                 +
             </button>
-            <button onClick={() => props.dispatch(decreaseCartItemActionCreator(props.index))}>
+            <button onClick={() => props.decreaseCartItemQuantity(props.index)}>
                 -
             </button>
             <br/>

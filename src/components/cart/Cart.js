@@ -1,32 +1,32 @@
 import React from 'react';
 import CartItem from "./CartItem";
-import {createNewOrderActionCreator, updateCartOrderCommentActionCreator} from "../../redux/cartReducer";
+import {increaseCartItemActionCreator} from "../../redux/cartReducer";
 
 const Cart = (props) => {
 
-    let cartItems = props.state.cartItems
+    let cartItems = props.cartItems
         .map((cartItem, index) => <CartItem index={index}
                                             goodId={cartItem.goodId}
                                             quantity={cartItem.quantity}
-                                            dispatch={props.dispatch}/>);
+                                            increaseCartItemQuantity={props.increaseCartItemQuantity}
+                                            decreaseCartItemQuantity={props.decreaseCartItemQuantity}/>);
 
     const onCartOrderCommentChange = (event) => {
-        let newText = event.target.value;
-        props.dispatch(updateCartOrderCommentActionCreator(newText))
+        props.changeOrderComment(event);
     };
 
-    const saveCartToOrder = () => {
-        props.dispatch(createNewOrderActionCreator());
+    const saveCartAsOrder = () => {
+        props.saveCartAsOrder();
     };
 
     return (
         <div>
             {cartItems}
-            <textarea value={props.state.cartOrderComment}
+            <textarea value={props.cartOrderComment}
                       onChange={onCartOrderCommentChange}
                       placeholder={'Order comment'}
             />
-            <button onClick={saveCartToOrder}>Save</button>
+            <button onClick={saveCartAsOrder}>Save</button>
         </div>
     )
 };

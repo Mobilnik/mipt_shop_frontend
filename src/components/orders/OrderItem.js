@@ -16,7 +16,7 @@ const OrderItem = (props) => {
             comment: {props.comment}
             <br/>
             <DeleteUnprocessedOrderButton status={props.status}
-                                          dispatch={props.dispatch}
+                                          deleteUnprocessedOrder={props.deleteUnprocessedOrder}
             />
             <br/>
         </div>

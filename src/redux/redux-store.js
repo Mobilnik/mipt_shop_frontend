@@ -9,6 +9,6 @@ let reducers = combineReducers({
     cartPage: cartReducer
 });
 
-let store = createStore(reducers);
+export let store = createStore(reducers);
 
 export default store;

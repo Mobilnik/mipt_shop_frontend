@@ -4,7 +4,7 @@ import React from "react";
 const DeleteUnprocessedOrderButton = (props) => {
     if (props.status === 0) {
         return (
-            <button onClick={() => props.dispatch(deleteUnprocessedOrderActionCreator(props.index))}>
+            <button onClick={() => props.deleteUnprocessedOrder(props.index)}>
                 Delete
             </button>
         )
