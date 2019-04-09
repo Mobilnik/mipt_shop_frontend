@@ -20,38 +20,43 @@ let initialState = {
 const cartReducer = (state = initialState, action) => {
     switch (action.type) {
         case INCREASE_CART_ITEM_QUANTITY:
-            increaseCartItemQuantity(state, action.cartItemIdx);
-            break;
+            return increaseCartItemQuantity(state, action.cartItemIdx);
         case DECREASE_CART_ITEM_QUANTITY:
-            decreaseCartItemQuantity(state, action.cartItemIdx);
-            break;
+            return decreaseCartItemQuantity(state, action.cartItemIdx);
         case UPDATE_CART_ORDER_COMMENT:
-            updateCartOrderComment(state, action.newText);
-            break;
+            return updateCartOrderComment(state, action.newText);
         case CREATE_NEW_ORDER_FROM_CART:
-            createNewOrderFromCart(state);
-            break;
+            return createNewOrderFromCart(state);
         default:
-            break;
+            return state;
     }
-    return state;
 };
 
 export default cartReducer;
 
 
-
 //Функции, меняющие данные. Только функции, определенные в state, могут его менять
 const increaseCartItemQuantity = (state, cartItemIdx) => {
-    state.cartItems[cartItemIdx].quantity++;
+    let stateCopy = {...state};
+    stateCopy.cartItems = [...state.cartItems];
+    stateCopy.cartItems[cartItemIdx].quantity++;
+
+    return stateCopy;
 };
 
 const decreaseCartItemQuantity = (state, cartItemIdx) => {
-    state.cartItems[cartItemIdx].quantity--;
+    let stateCopy = {...state};
+    stateCopy.cartItems = [...state.cartItems];
+    stateCopy.cartItems[cartItemIdx].quantity++;
+
+    return stateCopy;
 };
 
 const updateCartOrderComment = (state, newText) => {
-    state.cartOrderComment = newText;
+    let stateCopy = {...state};
+    stateCopy.cartOrderComment = newText;
+
+    return stateCopy;
 };
 
 const createNewOrderFromCart = (state) => {
@@ -65,10 +70,13 @@ const createNewOrderFromCart = (state) => {
     };
     //fixme state.orders.push(order);
 
-    state.cartItems = [];
-    state.cartOrderComment = "";
-};
+    let stateCopy = {...state};
 
+    stateCopy.cartItems = [];
+    stateCopy.cartOrderComment = "";
+
+    return stateCopy
+};
 
 
 //Action Creators

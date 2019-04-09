@@ -2,7 +2,6 @@ import React from 'react';
 import styles from './CartItem.module.css'
 
 const CartItem = (props) => {
-    console.log(props);
     return (
         <div className={`${styles.cartItem} ${styles.textColor}`}>
             index: {props.index}

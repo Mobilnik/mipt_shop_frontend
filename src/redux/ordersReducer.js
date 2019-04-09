@@ -38,20 +38,18 @@ let initialState = {
 const ordersReducer = (state = initialState, action) => {
     switch (action.type) {
         case DELETE_UNPROCESSED_ORDER:
-            deleteUnprocessedOrder(state, action.orderIdx);
-            break;
+            return deleteUnprocessedOrder(state, action.orderIdx);
         default:
-            break;
+            return state;
     }
-    return state;
 };
 
-export default ordersReducer;
-
-
-
 const deleteUnprocessedOrder = (state, orderIdx) => {
-    state.orders.splice(orderIdx, 1);
+    let stateCopy = {...state};
+    stateCopy.orders = [...stateCopy.orders];
+    stateCopy.orders.splice(orderIdx, 1);
+
+    return stateCopy;
 };
 
 
@@ -62,3 +60,5 @@ export const deleteUnprocessedOrderActionCreator = (orderIdx) => {
         orderIdx: orderIdx
     }
 };
+
+export default ordersReducer;

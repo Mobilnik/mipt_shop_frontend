@@ -1,6 +1,5 @@
 import React from 'react';
 import CartItem from "./CartItem";
-import {increaseCartItemActionCreator} from "../../redux/cartReducer";
 
 const Cart = (props) => {
 

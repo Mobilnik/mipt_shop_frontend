@@ -8,6 +8,9 @@ import {
 import Cart from "./Cart";
 import {connect} from "react-redux";
 
+//При любых изменениях connect пытается перерисовать этот объект.
+//Проверка на наличие изменений проводится через сравнение ссылок на объекты.
+//Если ссылки равны, объект не будет перерисован. Поэтому нам нужны копии (оператор ...)
 let mapStateToProps = (state) => {
     return {
         cartItems: state.cartPage.cartItems,
