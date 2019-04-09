@@ -1,4 +1,3 @@
-import {deleteUnprocessedOrderActionCreator} from "../../redux/ordersReducer";
 import React from "react";
 
 const DeleteUnprocessedOrderButton = (props) => {

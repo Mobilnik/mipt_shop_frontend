@@ -80,28 +80,28 @@ const createNewOrderFromCart = (state) => {
 
 
 //Action Creators
-export const increaseCartItemActionCreator = (cartItemIdx) => {
+export const increaseCartItemCreator = (cartItemIdx) => {
     return {
         type: INCREASE_CART_ITEM_QUANTITY,
         cartItemIdx: cartItemIdx
     }
 };
 
-export const decreaseCartItemActionCreator = (cartItemIdx) => {
+export const decreaseCartItemCreator = (cartItemIdx) => {
     return {
         type: DECREASE_CART_ITEM_QUANTITY,
         cartItemIdx: cartItemIdx
     }
 };
 
-export const updateCartOrderCommentActionCreator = (newText) => {
+export const updateCartOrderCommentCreator = (newText) => {
     return {
         type: UPDATE_CART_ORDER_COMMENT,
         newText: newText
     }
 };
 
-export const createNewOrderActionCreator = () => {
+export const createNewOrderCreator = () => {
     return {
         type: CREATE_NEW_ORDER_FROM_CART
     }

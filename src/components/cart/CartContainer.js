@@ -1,9 +1,9 @@
 import React from 'react';
 import {
-    updateCartOrderCommentActionCreator,
-    createNewOrderActionCreator,
-    decreaseCartItemActionCreator,
-    increaseCartItemActionCreator,
+    updateCartOrderCommentCreator,
+    createNewOrderCreator,
+    decreaseCartItemCreator,
+    increaseCartItemCreator,
 } from "../../redux/cartReducer";
 import Cart from "./Cart";
 import {connect} from "react-redux";
@@ -22,16 +22,16 @@ let mapDispatchToProps = (dispatch) => {
     return {
         changeOrderComment: (event) => {
             let newText = event.target.value;
-            dispatch(updateCartOrderCommentActionCreator(newText))
+            dispatch(updateCartOrderCommentCreator(newText))
         },
         saveCartAsOrder: () => {
-            dispatch(createNewOrderActionCreator());
+            dispatch(createNewOrderCreator());
         },
         increaseCartItemQuantity: (cartItemIdx) => {
-            dispatch(increaseCartItemActionCreator(cartItemIdx));
+            dispatch(increaseCartItemCreator(cartItemIdx));
         },
         decreaseCartItemQuantity: (cartItemIdx) => {
-            dispatch(decreaseCartItemActionCreator(cartItemIdx));
+            dispatch(decreaseCartItemCreator(cartItemIdx));
         }
     };
 };

@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {deleteUnprocessedOrderActionCreator} from "../../redux/ordersReducer";
+import {deleteUnprocessedOrderCreator} from "../../redux/ordersReducer";
 import OrderList from "./OrderList";
 
 
@@ -14,7 +14,7 @@ let mapStateToProps = (state) => {
 let mapDispatchToProps = (dispatch) => {
     return {
         deleteUnprocessedOrder: (orderIdx) => {
-            dispatch(deleteUnprocessedOrderActionCreator(orderIdx))
+            dispatch(deleteUnprocessedOrderCreator(orderIdx))
         }
     };
 };

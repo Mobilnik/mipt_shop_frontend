@@ -54,7 +54,7 @@ const deleteUnprocessedOrder = (state, orderIdx) => {
 
 
 //Action Creators
-export const deleteUnprocessedOrderActionCreator = (orderIdx) => {
+export const deleteUnprocessedOrderCreator = (orderIdx) => {
     return {
         type: DELETE_UNPROCESSED_ORDER,
         orderIdx: orderIdx
