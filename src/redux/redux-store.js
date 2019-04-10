@@ -1,6 +1,7 @@
-import thunk from "redux-thunk";
-import promise from "redux-promise-middleware";
 import {applyMiddleware, combineReducers, createStore} from "redux";
+import promise from "redux-promise-middleware";
+import thunk from "redux-thunk";
+
 import ordersReducer from "./ordersReducer";
 import goodsReducer from "./goodsReducer";
 import cartReducer from "./cartReducer";

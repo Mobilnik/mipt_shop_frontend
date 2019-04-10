@@ -9,61 +9,31 @@ const initialState = {
     fetching: false,
     fetched: false,
     error: null,
-    goods: [
-        {
-            id: 1,
-            name: "Bread",
-            photo: "photo 1",
-            price: 28.0
-        },
-        {
-            id: 2,
-            name: "Milk",
-            photo: "photo 2",
-            price: 45.6
-        },
-    ]
+    goods: []
 };
 
 const goodsReducer = (state = initialState, action) => {
-    let newState;
     switch (action.type) {
         case FETCH_GOODS_PENDING:
-            console.log('trying to send http get for goods');
-            newState = {
+            return {
                 ...state,
                 fetching: false,
-                error: action.error
             };
-            console.log('new state');
-            console.log(newState);
-            return newState;
         case FETCH_GOODS_REJECTED:
-            console.log('facing an error');
-            newState = {
+            return {
                 ...state,
                 fetching: false,
                 error: action.error
             };
-            console.log('new state');
-            console.log(newState);
-            return newState;
         case FETCH_GOODS_FULFILLED:
-            console.log('trying to receive');
-            newState = {
+            return {
                 ...state,
                 fetching: false,
                 fetched: true,
                 goods: action.payload.data,
             };
-            console.log('new state');
-            console.log(newState);
-            return newState;
         //todo add good to cart
-        default:
-            break;
     }
-    console.log('retuning state without changes');
     return state;
 };
 
