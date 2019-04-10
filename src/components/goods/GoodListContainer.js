@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from "react-redux";
 import GoodList from "./GoodList";
-
+import {fetchGoodsCreator} from "../../redux/goodsReducer";
 
 let mapStateToProps = (state) => {
     return {
@@ -10,7 +10,11 @@ let mapStateToProps = (state) => {
 };
 
 let mapDispatchToProps = (dispatch) => {
-    return {};
+    return {
+        fetchGoods: () => {
+            dispatch(fetchGoodsCreator())
+        }
+    };
 };
 
 let GoodListContainer = connect(mapStateToProps, mapDispatchToProps)(GoodList);

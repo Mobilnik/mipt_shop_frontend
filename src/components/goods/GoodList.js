@@ -8,9 +8,12 @@ const GoodList = (props) => {
                                photo={good.photo}
                                price={good.price}/>);
 
+    console.log('in good list');
+    console.log(props.goods);
     return (
         <div>
             {goods}
+            <button onClick={props.fetchGoods}>Click me</button>
         </div>
     )
 };
