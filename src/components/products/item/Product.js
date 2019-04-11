@@ -2,10 +2,13 @@ import React from 'react';
 import styles from './Product.module.css'
 
 const Product = (props) => {
+
+    if (props.hidden) {
+        return null;
+    }
+
     return (
         <div className={`${styles.productItem} ${styles.textColor}`}>
-            id: {props.id}
-            <br/>
             name: {props.name}
             <br/>
             photo: {props.photo}
