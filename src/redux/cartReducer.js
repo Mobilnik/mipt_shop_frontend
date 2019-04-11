@@ -4,6 +4,7 @@ const UPDATE_CART_ORDER_COMMENT = 'UPDATE-CART-ORDER-COMMENT';
 const CREATE_NEW_ORDER_FROM_CART = 'CREATE-NEW-ORDER-FROM-CART';
 
 let initialState = {
+    //todo delete
     cartItems: [
         {
             goodId: 1,
@@ -66,7 +67,7 @@ const createNewOrderFromCart = (state) => {
         status: 0,
         changeDateTime: new Date().getUTCDate(),
         comment: state.cartOrderComment,
-        goods: state.cartItems
+        products: state.cartItems
     };
     //fixme state.orders.push(order);
 

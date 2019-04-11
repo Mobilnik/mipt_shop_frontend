@@ -13,7 +13,7 @@ const Menu = () => {
                     <NavLink to='/orders' activeClassName={s.activeLink}> Orders </NavLink>
                 </div>
                 <div className={`${s.menuItem}`}>
-                    <NavLink to='/goods' activeClassName={s.activeLink}> Products </NavLink>
+                    <NavLink to='/products' activeClassName={s.activeLink}> Products </NavLink>
                 </div>
 
                 <div className={`${s.menuItem}`}>

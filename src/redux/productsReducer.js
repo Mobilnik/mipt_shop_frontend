@@ -1,48 +1,48 @@
 import axios from 'axios';
 
-const FETCH_GOODS = 'FETCH_GOODS';
-const FETCH_GOODS_PENDING = 'FETCH_GOODS_PENDING';
-const FETCH_GOODS_REJECTED = 'FETCH_GOODS_REJECTED';
-const FETCH_GOODS_FULFILLED = 'FETCH_GOODS_FULFILLED';
+const FETCH_PRODUCTS = 'FETCH_PRODUCTS';
+const FETCH_PRODUCTS_PENDING = 'FETCH_PRODUCTS_PENDING';
+const FETCH_PRODUCTS_REJECTED = 'FETCH_PRODUCTS_REJECTED';
+const FETCH_PRODUCTS_FULFILLED = 'FETCH_PRODUCTS_FULFILLED';
 
 const initialState = {
     fetching: false,
     fetched: false,
     error: null,
-    goods: []
+    products: []
 };
 
-const goodsReducer = (state = initialState, action) => {
+const productsReducer = (state = initialState, action) => {
     switch (action.type) {
-        case FETCH_GOODS_PENDING:
+        case FETCH_PRODUCTS_PENDING:
             return {
                 ...state,
                 fetching: false,
             };
-        case FETCH_GOODS_REJECTED:
+        case FETCH_PRODUCTS_REJECTED:
             return {
                 ...state,
                 fetching: false,
                 error: action.error
             };
-        case FETCH_GOODS_FULFILLED:
+        case FETCH_PRODUCTS_FULFILLED:
             return {
                 ...state,
                 fetching: false,
                 fetched: true,
-                goods: action.payload.data,
+                products: action.payload.data,
             };
-        //todo add good to cart
+        //todo add product to cart
     }
     return state;
 };
 
 //Action Creators
-export const fetchGoodsCreator = () => {
+export const fetchProductsCreator = () => {
     return {
-        type: FETCH_GOODS,
+        type: FETCH_PRODUCTS,
         payload: axios.get("http://localhost:8080/mipt-shop/good")
     }
 };
 
-export default goodsReducer;
+export default productsReducer;

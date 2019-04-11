@@ -3,12 +3,12 @@ import promise from "redux-promise-middleware";
 import thunk from "redux-thunk";
 
 import ordersReducer from "./ordersReducer";
-import goodsReducer from "./goodsReducer";
+import productsReducer from "./productsReducer";
 import cartReducer from "./cartReducer";
 
 let reducers = combineReducers({
     ordersPage: ordersReducer,
-    goodsPage: goodsReducer,
+    productsPage: productsReducer,
     cartPage: cartReducer
 });
 

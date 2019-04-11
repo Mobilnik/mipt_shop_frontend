@@ -5,7 +5,7 @@ const Cart = (props) => {
 
     let cartItems = props.cartItems
         .map((cartItem, index) => <CartItem index={index}
-                                            goodId={cartItem.goodId}
+                                            productId={cartItem.productId}
                                             quantity={cartItem.quantity}
                                             increaseCartItemQuantity={props.increaseCartItemQuantity}
                                             decreaseCartItemQuantity={props.decreaseCartItemQuantity}/>);

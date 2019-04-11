@@ -1,4 +1,4 @@
-.goodPageWrapper {
+.productPageWrapper {
     display: grid;
 
     grid-template-areas: "search" "grid";
@@ -10,7 +10,7 @@
     font-family: "Roboto";
 }
 
-.goodPageSearch {
+.productPageSearch {
     grid-area: search;
 
     user-select: none;
@@ -33,7 +33,7 @@
     font-size: 18px;
 }
 
-.goodPageGrid {
+.productPageGrid {
     grid-area: grid;
 
     display: grid;

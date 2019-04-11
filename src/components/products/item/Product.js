@@ -1,9 +1,9 @@
 import React from 'react';
-import styles from './Good.module.css'
+import styles from './Product.module.css'
 
-const Good = (props) => {
+const Product = (props) => {
     return (
-        <div className={`${styles.goodItem} ${styles.textColor}`}>
+        <div className={`${styles.productItem} ${styles.textColor}`}>
             id: {props.id}
             <br/>
             name: {props.name}
@@ -17,4 +17,4 @@ const Good = (props) => {
     )
 };
 
-export default Good;
+export default Product;

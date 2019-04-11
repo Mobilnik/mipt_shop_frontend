@@ -1,11 +1,11 @@
 import React from 'react';
 import Menu from "./components/menu/Menu";
 import {Route} from "react-router-dom";
-import GoodPageContainer from "./components/goods/GoodPageContainer";
+import ProductPageContainer from "./components/products/ProductPageContainer";
 import OrderListContainer from "./components/orders/OrderListContainer";
 import CartContainer from "./components/cart/CartContainer";
 import s from './MiptShopApp.module.css'
-import GoodPageFilterSidebar from "./components/goods/GoodPageFilterSidebar";
+import ProductPageSidebar from "./components/products/ProductPageSidebar";
 
 const MiptShopApp = (props) => {
     return (
@@ -16,12 +16,12 @@ const MiptShopApp = (props) => {
             </header>
 
             <div className={`${s.appSidebar}`}>
-                <Route path='/goods' render={() => <GoodPageFilterSidebar store={props.store}/>}
+                <Route path='/products' render={() => <ProductPageSidebar store={props.store}/>}
                 />
             </div>
 
             <div>
-                <Route path='/goods' render={() => <GoodPageContainer store={props.store}/>}
+                <Route path='/products' render={() => <ProductPageContainer store={props.store}/>}
                 />
                 <Route path='/orders' render={() => <OrderListContainer store={props.store}/>}
                 />

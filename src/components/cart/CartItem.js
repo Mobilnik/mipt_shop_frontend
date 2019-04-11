@@ -6,7 +6,7 @@ const CartItem = (props) => {
         <div className={`${styles.cartItem} ${styles.textColor}`}>
             index: {props.index}
             <br/>
-            goodId: {props.goodId}
+            goodId: {props.productId}
             <br/>
             quantity: {props.quantity}
             <br/>

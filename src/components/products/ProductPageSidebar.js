@@ -1,6 +1,6 @@
 import React from "react";
 
-const goodPageFilterSidebar = () => {
+const ProductPageSidebar = () => {
     return (
         <div>
             Тут будут фильтры
@@ -8,4 +8,4 @@ const goodPageFilterSidebar = () => {
     )
 };
 
-export default goodPageFilterSidebar;
+export default ProductPageSidebar;
