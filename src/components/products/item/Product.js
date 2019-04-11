@@ -23,9 +23,9 @@ const Product = (props) => {
                     ₽{props.price}
                 </div>
             </div>
-            <button className={`${styles.productItemAddButton}`}>
-                <img src="./../../../../public/images/cart.png" onClick={myFunction}/>
-            </button>
+            <div className={`${styles.productItemAddButton}`}>
+                <img src="/images/cart.png" onClick={myFunction}/>
+            </div>
         </div>
     )
 };

@@ -4,7 +4,7 @@
     grid-template-areas: "photo photo"
     "description addButton";
     grid-template-rows: 3fr 1fr;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 3fr 2fr;
 
     border-bottom: 1px solid peachpuff;
     border-right: 1px solid peachpuff;
@@ -22,7 +22,8 @@
 .productItemDescription {
     grid-area: description;
 
-    padding: 1rem;
+    padding: 0.5rem;
+    padding-top: 1rem;
 
     font-weight: bolder;
     font-size: 16px;
@@ -31,13 +32,22 @@
 }
 
 .productItemDescription .price {
+    padding-top: 0.5rem;
     font-weight: lighter;
 }
 
 .productItemAddButton {
     grid-area: addButton;
-
-    padding: 1rem;
-
     border-top: 1px solid peachpuff;
+}
+
+.productItemAddButton img {
+    padding-left: 0.7rem;
+    padding-top: 0.7rem;
+    width: 70%;
+    height: 70%;
+}
+
+.productItemAddButton img:hover{
+    cursor: pointer;
 }
