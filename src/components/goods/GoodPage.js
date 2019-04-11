@@ -1,7 +1,6 @@
 import React from 'react';
 import Good from "./item/Good";
 import s from "./GoodPage.module.css";
-import globalS from "../.././MiptShopApp.module.css";
 
 
 let GoodPage = (props) => {
@@ -14,18 +13,14 @@ let GoodPage = (props) => {
                            price={good.price}/>);
 
     return (
-        <div>
-            <div className={`${globalS.appWrapperContent}`}>
-            <textarea className={`${s.searchProduct}`}
+        <div className={`${s.goodPageWrapper}`}>
+            <textarea className={`${s.goodPageSearch}`}
                       placeholder={'Enter a product name'}
                       maxLength={20}
             />
 
-                <div className={`${s.goodGrid}`}>
-                    {goods}
-                </div>
-
-
+            <div className={`${s.goodPageGrid}`}>
+                {goods}
             </div>
         </div>
     );

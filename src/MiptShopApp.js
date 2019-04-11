@@ -11,11 +11,11 @@ const MiptShopApp = (props) => {
     return (
         <div className={`${s.appWrapper}`}>
 
-            <header className={`${s.appWrapperHeader}`}>
+            <header className={`${s.appHeader}`}>
                 <Menu/>
             </header>
 
-            <div className={`${s.appWrapperSidebar}`}>
+            <div className={`${s.appSidebar}`}>
                 <Route path='/goods' render={() => <GoodPageFilterSidebar store={props.store}/>}
                 />
             </div>

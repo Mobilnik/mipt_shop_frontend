@@ -1,36 +1,28 @@
 .appWrapper {
     display: grid;
 
-    grid-template-areas:
-            "header header header"
-            "sidebar content content"
-            "footer footer footer";
+    grid-template-areas: "header header" "sidebar content";
     grid-template-rows: 60px 1fr;
     grid-template-columns: 2fr 10fr;
     grid-gap: 0;
 
     font-family: "Roboto";
+
     height: calc(100vh - 10px);
 }
 
-.appWrapperHeader {
+.appHeader {
     grid-area: header;
 
     border: 2px solid peachpuff;
 
-    position: sticky;
-    padding: 0;
-    text-align: right;
-
     background-color: blanchedalmond;
+
+    text-align: right;
 }
 
-.appWrapperContent {
-    grid-area: content;
-    background-color: gold;
-}
 
-.appWrapperSidebar {
+.appSidebar {
     grid-area: sidebar;
 
     border-left: 2px solid peachpuff;
@@ -39,12 +31,14 @@
 
     background-color: blanchedalmond;
 
+    padding-top: 10px;
+
     text-align: center;
 
     font-weight: lighter;
     font-size: 14px;
 }
 
-.goodFilterPanel {
-
+.appContent {
+    grid-area: content;
 }
