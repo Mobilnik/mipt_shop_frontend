@@ -1,7 +1,7 @@
 import React from 'react';
-import styles from './GoodItem.module.css'
+import styles from './Good.module.css'
 
-const GoodItem = (props) => {
+const Good = (props) => {
     return (
         <div className={`${styles.goodItem} ${styles.textColor}`}>
             id: {props.id}
@@ -17,4 +17,4 @@ const GoodItem = (props) => {
     )
 };
 
-export default GoodItem;
+export default Good;

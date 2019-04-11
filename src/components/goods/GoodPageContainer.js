@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from "react-redux";
-import GoodList from "./GoodList";
+import GoodList from "./GoodPage";
 import {fetchGoodsCreator} from "../../redux/goodsReducer";
 
 let mapStateToProps = (state) => {
@@ -17,6 +17,6 @@ let mapDispatchToProps = (dispatch) => {
     };
 };
 
-let GoodListContainer = connect(mapStateToProps, mapDispatchToProps)(GoodList);
+let GoodPageContainer = connect(mapStateToProps, mapDispatchToProps)(GoodList);
 
-export default GoodListContainer;
+export default GoodPageContainer;

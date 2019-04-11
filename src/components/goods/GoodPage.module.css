@@ -1,3 +1,18 @@
+.goodPageWrapper {
+    display: grid;
+
+    grid-template-areas:
+            "header header header"
+            "sidebar content content"
+            "footer footer footer";
+    grid-template-rows: 60px 1fr;
+    grid-template-columns: 2fr 10fr;
+    grid-gap: 0;
+
+    font-family: "Roboto";
+    height: calc(100vh - 10px);
+}
+
 .searchProduct {
     position: absolute;
 
@@ -21,7 +36,6 @@
     padding-bottom: 2px;
     border-left: 1px solid peachpuff;
 
-    font-family: "Roboto";
     font-weight: lighter;
     font-size: 18px;
 }
@@ -39,27 +53,4 @@
 
     border-top: 1px solid peachpuff;
     border-left: 1px solid peachpuff;
-}
-
-.goodFilterPanel {
-    position: absolute;
-
-    top: 8%;
-    width: 23.6%;
-    left: 75.6%;
-
-    padding-top: 1%;
-
-    text-align: center;
-
-    border-top: 1px solid peachpuff;
-    border-left: 1px solid peachpuff;
-    border-right: 2px solid peachpuff;
-    border-bottom: 2px solid peachpuff;
-
-    background-color: blanchedalmond;
-
-    font-family: "Roboto";
-    font-weight: lighter;
-    font-size: 18px;
 }
