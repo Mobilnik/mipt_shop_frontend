@@ -7,15 +7,25 @@ const Product = (props) => {
         return null;
     }
 
+    const myFunction = () => {
+        alert("Fix me!")
+    };
+
     return (
-        <div className={`${styles.productItem} ${styles.textColor}`}>
-            name: {props.name}
-            <br/>
-            photo: {props.photo}
-            <br/>
-            price: {props.price}
-            <br/>
-            <br/>
+        <div className={`${styles.productItemWrapper}`}>
+            <div className={`${styles.productItemPhoto}`}>
+                Photos support will soon be provided
+            </div>
+
+            <div className={`${styles.productItemDescription}`}>
+                {props.name}
+                <div className={`${styles.price}`}>
+                    ₽{props.price}
+                </div>
+            </div>
+            <button className={`${styles.productItemAddButton}`}>
+                <img src="./../../../../public/images/cart.png" onClick={myFunction}/>
+            </button>
         </div>
     )
 };
