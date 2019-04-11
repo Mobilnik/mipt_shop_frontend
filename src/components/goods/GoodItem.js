@@ -3,7 +3,7 @@ import styles from './GoodItem.module.css'
 
 const GoodItem = (props) => {
     return (
-        <div className={`${styles.orderItem} ${styles.textColor}`}>
+        <div className={`${styles.goodItem} ${styles.textColor}`}>
             id: {props.id}
             <br/>
             name: {props.name}

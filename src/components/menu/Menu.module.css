@@ -1,0 +1,28 @@
+.menu {
+    position: sticky;
+    padding: 0;
+    text-align: right;
+
+    background-color: blanchedalmond;
+    border: 2px solid peachpuff;
+}
+
+.menuItem {
+    display: inline-block;
+
+    margin-right: 2%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+
+    font-size: 20px;
+    font-family: "Roboto";
+}
+
+.menuItem a {
+    color: darkgray;
+    text-decoration: none;
+}
+
+.menuItem a.activeLink {
+    color: black
+}

@@ -1,7 +1,17 @@
-.orderItem {
-   padding: 50px;
+@media (min-width: 768px) {
+    .goodItem {
+        padding: 3rem;
+        text-align: center;
+        border-bottom: 1px solid peachpuff;
+        border-right: 1px solid peachpuff;
+
+        font-family: "Roboto";
+        font-weight: lighter;
+        font-size: 18px;
+    }
 }
 
+
 .textColor {
-    color: brown;
+    color: black;
 }

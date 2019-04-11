@@ -1,5 +1,6 @@
 import React from 'react';
 import GoodItem from "./GoodItem";
+import s from "./GoodList.module.css";
 
 let GoodList = (props) => {
     props.fetchGoods();
@@ -12,7 +13,32 @@ let GoodList = (props) => {
 
     return (
         <div>
-            {goods}
+            <textarea className={`${s.searchProduct}`}
+                      placeholder={'Enter a product name'}
+                      maxLength={20}
+            />
+
+            <div className={`${s.goodGrid}`}>
+                {goods}
+            </div>
+
+            <div className={`${s.goodFilterPanel}`}>
+                Тут будут фильтры
+                <br/>
+                Тут
+                <br/>
+                Будут
+                <br/>
+                фильтры
+                <br/>
+                фильтры
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+            </div>
         </div>
     );
 
