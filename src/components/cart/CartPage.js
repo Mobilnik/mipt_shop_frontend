@@ -3,11 +3,13 @@ import CartItem from "./item/CartItem";
 import s from "./CartPage.module.css";
 
 const CartPage = (props) => {
+
     if (props.mustFetch) {
         props.fetchCart();
         props.setMustFetch(false);
     }
 
+    //fixme this stuff does not work
     if (props.error != null) {
         return (
             <div className={s.emptyCartMessage}>
@@ -55,7 +57,7 @@ const CartPage = (props) => {
                 />
 
                 <div className={`${s.saveButton}`}>
-                    <img src="/images/save-button.png" onClick={saveCartAsOrder}/>
+                    <img src="/images/save-button.png" alt={'No image provided'} onClick={saveCartAsOrder}/>
                 </div>
             </div>
         </div>

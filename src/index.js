@@ -1,19 +1,23 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import {BrowserRouter} from "react-router-dom";
+import {Router} from 'react-router';
 import {Provider} from "react-redux";
 import store from "./redux/redux-store.js";
 import MiptShopApp from "./MiptShopApp";
+import {syncHistoryWithStore} from "react-router-redux";
+import {browserHistory} from "./redux/redux-store";
+
+// Create an enhanced history that syncs navigation events with the store
+const history = syncHistoryWithStore(browserHistory, store);
 
 const rerenderEntireTree = () => {
 
     ReactDOM.render(
-        <BrowserRouter>
-            <Provider store={store}>
+        <Provider store={store}>
+            <Router history={history}>
                 <MiptShopApp/>
-            </Provider>
-        </BrowserRouter>, document.getElementById('root')
-    );
+            </Router>
+        </Provider>, document.getElementById('root'));
 };
 
 rerenderEntireTree();

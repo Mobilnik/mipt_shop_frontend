@@ -9,6 +9,7 @@ import {
 } from "../../redux/cartReducer";
 import CartPage from "./CartPage";
 import {connect} from "react-redux";
+import {push} from "react-router-redux";
 
 //При любых изменениях connect пытается перерисовать этот объект.
 //Проверка на наличие изменений проводится через сравнение ссылок на объекты.
@@ -43,8 +44,10 @@ let mapDispatchToProps = (dispatch) => {
             let newText = event.target.value;
             dispatch(updateCartOrderCommentCreator(newText))
         },
+
         saveCartAsOrder: () => {
             dispatch(createNewOrderCreator());
+            dispatch(push('/orders'))
         }
     };
 };

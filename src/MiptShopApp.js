@@ -1,6 +1,6 @@
 import React from 'react';
 import Menu from "./components/menu/Menu";
-import {Route} from "react-router-dom";
+import {Route} from "react-router";
 import ProductPageContainer from "./components/products/ProductPageContainer";
 import OrderListContainer from "./components/orders/OrderListContainer";
 import CartPageContainer from "./components/cart/CartPageContainer";
