@@ -85,7 +85,7 @@ export const setMustFetchCreator = (newValue) => {
 export const fetchProductsCreator = () => {
     return {
         type: FETCH_PRODUCTS,
-        payload: axios.get("http://localhost:8080/mipt-shop/good")
+        payload: axios.get("http://localhost:8080/mipt-shop/products")
     }
 };
 

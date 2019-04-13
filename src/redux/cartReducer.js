@@ -142,7 +142,7 @@ export const setMustFetchCreator = (newValue) => {
 export const fetchCartCreator = () => {
     return {
         type: FETCH_CART,
-        payload: axios.get("http://localhost:8080/mipt-shop/order/cart")
+        payload: axios.get("http://localhost:8080/mipt-shop/orders/cart")
     }
 };
 
