@@ -25,9 +25,7 @@ const CartItem = (props) => {
 
             <div className={`${s.cartItemQuantity}`}>
 
-                <input type={'number'}
-                       className={s.comment}
-                       onChange={onQuantityChange}
+                <input onChange={onQuantityChange}
                        value={props.quantity}
                 >
                 </input>

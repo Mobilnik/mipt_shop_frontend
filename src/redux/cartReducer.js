@@ -71,7 +71,7 @@ export default cartReducer;
 
 //Функции, меняющие данные. Только функции, определенные в state, могут его менять
 const updateCartItemQuantity = (state, productId, newValue) => {
-    if (!isCorrectInteger(newValue)) {
+    if (!isCorrectIntegerOrEmpty(newValue)) {
         return state;
     }
 
@@ -79,7 +79,11 @@ const updateCartItemQuantity = (state, productId, newValue) => {
     stateCopy.cartItems = [...state.cartItems];
 
     let itemToChange = findByProductId(stateCopy.cartItems, productId);
-    itemToChange.quantity = parseInt(newValue, 10);
+    if (newValue === "") {
+        itemToChange.quantity = 1;
+    } else {
+        itemToChange.quantity = parseInt(newValue, 10);
+    }
 
     return stateCopy;
 };
@@ -99,7 +103,10 @@ const findByProductId = (array, productId) => {
     return array.filter(item => item.productId === productId)[0];
 };
 
-const isCorrectInteger = (stringToCheck) => {
+const isCorrectIntegerOrEmpty = (stringToCheck) => {
+    if (stringToCheck === "") {
+        return true;
+    }
     return /^\+?(0|[1-9]\d*)$/.test(stringToCheck);
 };
 
