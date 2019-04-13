@@ -6,8 +6,8 @@ const FETCH_CART_PENDING = 'FETCH_CART_PENDING';
 const FETCH_CART_REJECTED = 'FETCH_CART_REJECTED';
 const FETCH_CART_FULFILLED = 'FETCH_CART_FULFILLED';
 
-const INCREASE_CART_ITEM_QUANTITY = 'INCREASE-CART-ITEM-QUANTITY';
-const DECREASE_CART_ITEM_QUANTITY = 'DECREASE-CART-ITEM-QUANTITY';
+const UPDATE_CART_ITEM_QUANTITY = 'UPDATE-CART-ITEM-QUANTITY';
+const DELETE_CART_ITEM = 'DELETE-CART-ITEM';
 const UPDATE_CART_ORDER_COMMENT = 'UPDATE-CART-ORDER-COMMENT';
 const CREATE_NEW_ORDER_FROM_CART = 'CREATE-NEW-ORDER-FROM-CART';
 
@@ -18,20 +18,12 @@ const initialState = {
     fetching: false,
     fetched: false,
     error: null,
-    cartItems: [
-        {
-            goodId: 1,
-            quantity: 2
-        },
-        {
-            goodId: 2,
-            quantity: 3
-        },
-    ],
+    cartItems: [],
     cartOrderComment: ""
 };
 
 const cartReducer = (state = initialState, action) => {
+    console.log(action);
     switch (action.type) {
         case SET_MUST_FETCH:
             return {
@@ -43,6 +35,7 @@ const cartReducer = (state = initialState, action) => {
             return {
                 ...state,
                 fetching: false,
+                error: null
             };
 
         case FETCH_CART_REJECTED:
@@ -61,10 +54,10 @@ const cartReducer = (state = initialState, action) => {
             };
 
 
-        case INCREASE_CART_ITEM_QUANTITY:
-            return increaseCartItemQuantity(state, action.cartItemIdx);
-        case DECREASE_CART_ITEM_QUANTITY:
-            return decreaseCartItemQuantity(state, action.cartItemIdx);
+        case UPDATE_CART_ITEM_QUANTITY:
+            return updateCartItemQuantity(state, action.productId, action.newValue);
+        case DELETE_CART_ITEM:
+            return deleteCartItem(state, action.productId);
         case UPDATE_CART_ORDER_COMMENT:
             return updateCartOrderComment(state, action.newText);
         case CREATE_NEW_ORDER_FROM_CART:
@@ -76,22 +69,38 @@ const cartReducer = (state = initialState, action) => {
 
 export default cartReducer;
 
-
 //Функции, меняющие данные. Только функции, определенные в state, могут его менять
-const increaseCartItemQuantity = (state, cartItemIdx) => {
+const updateCartItemQuantity = (state, productId, newValue) => {
+    if (!isCorrectInteger(newValue)) {
+        return state;
+    }
+
     let stateCopy = {...state};
     stateCopy.cartItems = [...state.cartItems];
-    stateCopy.cartItems[cartItemIdx].quantity++;
+
+    let itemToChange = findByProductId(stateCopy.cartItems, productId);
+    itemToChange.quantity = parseInt(newValue, 10);
 
     return stateCopy;
 };
 
-const decreaseCartItemQuantity = (state, cartItemIdx) => {
+const deleteCartItem = (state, productId) => {
     let stateCopy = {...state};
     stateCopy.cartItems = [...state.cartItems];
-    stateCopy.cartItems[cartItemIdx].quantity++;
 
+    let itemToDelete = findByProductId(stateCopy.cartItems, productId);
+    let itemToDeleteIndex = stateCopy.cartItems.indexOf(itemToDelete);
+
+    stateCopy.cartItems.splice(itemToDeleteIndex, 1);
     return stateCopy;
+};
+
+const findByProductId = (array, productId) => {
+    return array.filter(item => item.productId === productId)[0];
+};
+
+const isCorrectInteger = (stringToCheck) => {
+    return /^\+?(0|[1-9]\d*)$/.test(stringToCheck);
 };
 
 const updateCartOrderComment = (state, newText) => {
@@ -137,20 +146,6 @@ export const fetchCartCreator = () => {
     }
 };
 
-export const increaseCartItemCreator = (cartItemIdx) => {
-    return {
-        type: INCREASE_CART_ITEM_QUANTITY,
-        cartItemIdx: cartItemIdx
-    }
-};
-
-export const decreaseCartItemCreator = (cartItemIdx) => {
-    return {
-        type: DECREASE_CART_ITEM_QUANTITY,
-        cartItemIdx: cartItemIdx
-    }
-};
-
 export const updateCartOrderCommentCreator = (newText) => {
     return {
         type: UPDATE_CART_ORDER_COMMENT,
@@ -161,5 +156,19 @@ export const updateCartOrderCommentCreator = (newText) => {
 export const createNewOrderCreator = () => {
     return {
         type: CREATE_NEW_ORDER_FROM_CART
+    }
+};
+
+export const updateCartItemQuantityCreator = (productId, newValue) => {
+    return {
+        type: UPDATE_CART_ITEM_QUANTITY,
+        productId: productId,
+        newValue: newValue
+    }
+};
+export const deleteCartItemCreator = (productId) => {
+    return {
+        type: DELETE_CART_ITEM,
+        productId: productId,
     }
 };

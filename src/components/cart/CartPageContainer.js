@@ -2,8 +2,8 @@ import React from 'react';
 import {
     updateCartOrderCommentCreator,
     createNewOrderCreator,
-    decreaseCartItemCreator,
-    increaseCartItemCreator,
+    updateCartItemQuantityCreator,
+    deleteCartItemCreator,
     fetchCartCreator,
     setMustFetchCreator
 } from "../../redux/cartReducer";
@@ -30,18 +30,21 @@ let mapDispatchToProps = (dispatch) => {
             dispatch(fetchCartCreator());
         },
 
+        updateCartItemQuantity: (productId, event) => {
+            let newValue = event.target.value;
+            dispatch(updateCartItemQuantityCreator(productId, newValue));
+        },
+
+        deleteCartItem: (productId) => {
+            dispatch(deleteCartItemCreator(productId));
+        },
+
         changeOrderComment: (event) => {
             let newText = event.target.value;
             dispatch(updateCartOrderCommentCreator(newText))
         },
         saveCartAsOrder: () => {
             dispatch(createNewOrderCreator());
-        },
-        increaseCartItemQuantity: (cartItemIdx) => {
-            dispatch(increaseCartItemCreator(cartItemIdx));
-        },
-        decreaseCartItemQuantity: (cartItemIdx) => {
-            dispatch(decreaseCartItemCreator(cartItemIdx));
         }
     };
 };

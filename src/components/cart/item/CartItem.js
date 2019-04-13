@@ -1,22 +1,40 @@
 import React from 'react';
-import styles from './CartItem.module.css'
+import s from './CartItem.module.css'
 
 const CartItem = (props) => {
+
+
+    const onQuantityChange = (event) => {
+        props.updateCartItemQuantity(props.productId, event);
+    };
+
+    const onDelete = () => {
+        props.deleteCartItem(props.productId);
+    };
+
     return (
-        <div className={`${styles.cartItem} ${styles.textColor}`}>
-            index: {props.index}
-            <br/>
-            goodId: {props.productId}
-            <br/>
-            quantity: {props.quantity}
-            <br/>
-            <button onClick={() => props.increaseCartItemQuantity(props.index)}>
-                +
-            </button>
-            <button onClick={() => props.decreaseCartItemQuantity(props.index)}>
-                -
-            </button>
-            <br/>
+        <div className={`${s.cartItemWrapper}`}>
+
+            <div className={`${s.cartItemDescription}`}>
+                {props.productName}
+
+                <div className={`${s.price}`}>
+                    ₽{props.productPrice}
+                </div>
+            </div>
+
+            <div className={`${s.cartItemQuantity}`}>
+
+                <input type={'number'}
+                       className={s.comment}
+                       onChange={onQuantityChange}
+                       value={props.quantity}
+                >
+                </input>
+            </div>
+            <div className={`${s.cartItemRemoveButton}`}>
+                <img src="/images/red_cross.png" onClick={onDelete}/>
+            </div>
         </div>
     );
 };
