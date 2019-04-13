@@ -4,8 +4,10 @@ import {
     createNewOrderCreator,
     decreaseCartItemCreator,
     increaseCartItemCreator,
+    fetchCartCreator,
+    setMustFetchCreator
 } from "../../redux/cartReducer";
-import Cart from "./Cart";
+import CartPage from "./CartPage";
 import {connect} from "react-redux";
 
 //При любых изменениях connect пытается перерисовать этот объект.
@@ -14,12 +16,20 @@ import {connect} from "react-redux";
 let mapStateToProps = (state) => {
     return {
         cartItems: state.cartPage.cartItems,
-        cartOrderComment: state.cartPage.cartOrderComment
+        cartOrderComment: state.cartPage.cartOrderComment,
+        mustFetch: state.cartPage.mustFetch
     }
 };
 
 let mapDispatchToProps = (dispatch) => {
     return {
+        setMustFetch: (newValue) => {
+            dispatch(setMustFetchCreator(newValue));
+        },
+        fetchCart: () => {
+            dispatch(fetchCartCreator());
+        },
+
         changeOrderComment: (event) => {
             let newText = event.target.value;
             dispatch(updateCartOrderCommentCreator(newText))
@@ -37,6 +47,6 @@ let mapDispatchToProps = (dispatch) => {
 };
 
 
-let CartContainer = connect(mapStateToProps, mapDispatchToProps)(Cart);
+let CartPageContainer = connect(mapStateToProps, mapDispatchToProps)(CartPage);
 
-export default CartContainer;
+export default CartPageContainer;

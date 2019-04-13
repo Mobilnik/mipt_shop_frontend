@@ -22,12 +22,12 @@ const initialState = {
 const productsReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_MUST_FETCH:
-            return {...state,
+            return {
+                ...state,
                 mustFetch: action.newValue
             };
 
         case FETCH_PRODUCTS_PENDING:
-            console.log(fetch);
             return {
                 ...state,
                 fetching: false,
@@ -62,7 +62,6 @@ const filterProducts = (state, filterText) => {
     stateCopy.products = [...stateCopy.products];
     stateCopy.filterText = filterText;
     const filterTextLowerCase = stateCopy.filterText.toLowerCase();
-
 
     stateCopy.products.forEach(product => {
         if (!product.name.toLowerCase().includes(filterTextLowerCase))

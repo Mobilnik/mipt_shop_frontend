@@ -17,7 +17,7 @@ let ProductPage = (props) => {
                                  hidden={product.hidden}/>);
 
     const onFilterTextChange = (event) => {
-        props.filterProducts(event)
+        props.filterProducts(event);
     };
 
     return (

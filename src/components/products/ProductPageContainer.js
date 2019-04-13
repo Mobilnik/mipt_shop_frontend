@@ -14,14 +14,14 @@ let mapStateToProps = (state) => {
 let mapDispatchToProps = (dispatch) => {
     return {
         setMustFetch: (newValue) => {
-          dispatch(setMustFetchCreator(newValue))
+          dispatch(setMustFetchCreator(newValue));
         },
         fetchProducts: () => {
-            dispatch(fetchProductsCreator())
+            dispatch(fetchProductsCreator());
         },
         filterProducts: (event) => {
             let newText = event.target.value;
-            dispatch(filterProductsCreator(newText))
+            dispatch(filterProductsCreator(newText));
         }
     };
 };

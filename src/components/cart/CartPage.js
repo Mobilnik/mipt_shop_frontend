@@ -1,7 +1,11 @@
 import React from 'react';
-import CartItem from "./CartItem";
+import CartItem from "./item/CartItem";
 
-const Cart = (props) => {
+const CartPage = (props) => {
+    if (props.mustFetch) {
+        props.fetchCart();
+        props.setMustFetch(false);
+    }
 
     let cartItems = props.cartItems
         .map((cartItem, index) => <CartItem index={index}
@@ -30,4 +34,4 @@ const Cart = (props) => {
     )
 };
 
-export default Cart;
+export default CartPage;

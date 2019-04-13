@@ -1,10 +1,23 @@
+import axios from "axios";
+
+const SET_MUST_FETCH = 'SET_MUST_FETCH';
+const FETCH_CART = 'FETCH_CART';
+const FETCH_CART_PENDING = 'FETCH_CART_PENDING';
+const FETCH_CART_REJECTED = 'FETCH_CART_REJECTED';
+const FETCH_CART_FULFILLED = 'FETCH_CART_FULFILLED';
+
 const INCREASE_CART_ITEM_QUANTITY = 'INCREASE-CART-ITEM-QUANTITY';
 const DECREASE_CART_ITEM_QUANTITY = 'DECREASE-CART-ITEM-QUANTITY';
 const UPDATE_CART_ORDER_COMMENT = 'UPDATE-CART-ORDER-COMMENT';
 const CREATE_NEW_ORDER_FROM_CART = 'CREATE-NEW-ORDER-FROM-CART';
 
-let initialState = {
-    //todo delete
+const initialState = {
+    //todo hack
+    mustFetch: true,
+
+    fetching: false,
+    fetched: false,
+    error: null,
     cartItems: [
         {
             goodId: 1,
@@ -20,6 +33,34 @@ let initialState = {
 
 const cartReducer = (state = initialState, action) => {
     switch (action.type) {
+        case SET_MUST_FETCH:
+            return {
+                ...state,
+                mustFetch: action.newValue
+            };
+
+        case FETCH_CART_PENDING:
+            return {
+                ...state,
+                fetching: false,
+            };
+
+        case FETCH_CART_REJECTED:
+            return {
+                ...state,
+                fetching: false,
+                error: action.error
+            };
+
+        case FETCH_CART_FULFILLED:
+            return {
+                ...state,
+                fetching: false,
+                fetched: true,
+                cartItems: action.payload.data.products
+            };
+
+
         case INCREASE_CART_ITEM_QUANTITY:
             return increaseCartItemQuantity(state, action.cartItemIdx);
         case DECREASE_CART_ITEM_QUANTITY:
@@ -61,7 +102,8 @@ const updateCartOrderComment = (state, newText) => {
 };
 
 const createNewOrderFromCart = (state) => {
-    let order = {
+    //fixme
+    /*let order = {
         id: 3,
         userId: 1,
         status: 0,
@@ -69,7 +111,7 @@ const createNewOrderFromCart = (state) => {
         comment: state.cartOrderComment,
         products: state.cartItems
     };
-    //fixme state.orders.push(order);
+     state.orders.push(order);*/
 
     let stateCopy = {...state};
 
@@ -81,6 +123,20 @@ const createNewOrderFromCart = (state) => {
 
 
 //Action Creators
+export const setMustFetchCreator = (newValue) => {
+    return {
+        type: SET_MUST_FETCH,
+        newValue: newValue
+    }
+};
+
+export const fetchCartCreator = () => {
+    return {
+        type: FETCH_CART,
+        payload: axios.get("http://localhost:8080/mipt-shop/order/cart")
+    }
+};
+
 export const increaseCartItemCreator = (cartItemIdx) => {
     return {
         type: INCREASE_CART_ITEM_QUANTITY,
