@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const SET_MUST_FETCH = 'SET_MUST_FETCH';
+const SET_MUST_FETCH_PRODUCTS = 'SET_MUST_FETCH_PRODUCTS';
 const FETCH_PRODUCTS = 'FETCH_PRODUCTS';
 const FETCH_PRODUCTS_PENDING = 'FETCH_PRODUCTS_PENDING';
 const FETCH_PRODUCTS_REJECTED = 'FETCH_PRODUCTS_REJECTED';
@@ -20,8 +20,14 @@ const initialState = {
 };
 
 const productsReducer = (state = initialState, action) => {
+    console.log('productsReducer');
+    console.log('action');
+    console.log(action);
+    console.log('state');
+    console.log(state);
+
     switch (action.type) {
-        case SET_MUST_FETCH:
+        case SET_MUST_FETCH_PRODUCTS:
             return {
                 ...state,
                 mustFetch: action.newValue
@@ -77,7 +83,7 @@ const filterProducts = (state, filterText) => {
 //Action Creators
 export const setMustFetchCreator = (newValue) => {
     return {
-        type: SET_MUST_FETCH,
+        type: SET_MUST_FETCH_PRODUCTS,
         newValue: newValue
     }
 };

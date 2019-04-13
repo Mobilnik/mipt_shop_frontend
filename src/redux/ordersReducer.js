@@ -36,6 +36,12 @@ let initialState = {
 };
 
 const ordersReducer = (state = initialState, action) => {
+    console.log('ordersReducer');
+    console.log('action');
+    console.log(action);
+    console.log('state');
+    console.log(state);
+
     switch (action.type) {
         case DELETE_UNPROCESSED_ORDER:
             return deleteUnprocessedOrder(state, action.orderIdx);
