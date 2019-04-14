@@ -37,8 +37,8 @@
     grid-area: grid;
 
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /*Элементы грида будут иметь гориз. размеры от 250 пикселей до 1 единицы*/
-    grid-template-rows: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fill, 256px);
+    grid-template-rows: repeat(auto-fill, 350px);
 
     grid-gap: 10px;
 }

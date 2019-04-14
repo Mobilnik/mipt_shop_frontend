@@ -12,7 +12,7 @@ let ProductPage = (props) => {
     let products = props.products
         .map(product => <Product id={product.id}
                                  name={product.name}
-                                 photo={product.photo}
+                                 photoUrl={product.photoUrl}
                                  price={product.price}
                                  hidden={product.hidden}/>);
 

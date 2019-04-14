@@ -14,7 +14,10 @@ const Product = (props) => {
     return (
         <div className={`${styles.productItemWrapper}`}>
             <div className={`${styles.productItemPhoto}`}>
-                Photos support will soon be provided
+                {/*Если хотим отображать base 64
+                <img src={`data:image/jpeg;base64,${props.photo}`} />
+                */}
+                <img src={props.photoUrl}/>
             </div>
 
             <div className={`${styles.productItemDescription}`}>
