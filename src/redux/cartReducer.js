@@ -1,4 +1,5 @@
 import axios from "axios";
+import {isCorrectIntegerOrEmpty} from "../components/lib";
 
 const SET_MUST_FETCH_CART = 'SET_MUST_FETCH_CART';
 const FETCH_CART = 'FETCH_CART';
@@ -121,13 +122,6 @@ const deleteCartItem = (state, productId) => {
 
 const findByProductId = (array, productId) => {
     return array.filter(item => item.productId === productId)[0];
-};
-
-const isCorrectIntegerOrEmpty = (stringToCheck) => {
-    if (stringToCheck === "") {
-        return true;
-    }
-    return /^\+?(0|[1-9]\d*)$/.test(stringToCheck);
 };
 
 const updateCartOrderComment = (state, newText) => {

@@ -12,3 +12,10 @@ export const isCorrectFloat = (str) => {
     let num = parseFloat(str);
     return !isNaN(num);
 };
+
+export const isCorrectIntegerOrEmpty = (str) => {
+    if (str === "") {
+        return true;
+    }
+    return /^\+?(0|[1-9]\d*)$/.test(str);
+};
