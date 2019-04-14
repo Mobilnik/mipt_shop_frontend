@@ -69,7 +69,9 @@ const ordersReducer = (state = initialState, action) => {
 
 const prepareOrdersToDisplay = (orderDtos) => {
     orderDtos.forEach(o => {
-        o.updatedDateTime = new Date(o.updatedDateTime + "Z"); //начинаем воспринимать пришедшее время как время в UTC
+        //o.updatedDateTime = new Date(o.updatedDateTime + "Z"); //если работаем на бэке с LocalDateTime: начинаем воспринимать пришедшее время как время в UTC
+        o.updatedDateTime = new Date(o.updatedDateTime.substring(0, o.updatedDateTime.indexOf('Z') + 1)); //если работаем на бэке с ZonedDateTime: пришло время в UTC, отрезали все, что после "Z" (доп. инфа о таймзоне)
+        console.log(o.updatedDateTime);
         o.totalCost = calculateTotalCost(o.products);
     });
     return orderDtos;
