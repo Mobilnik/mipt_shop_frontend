@@ -7,15 +7,13 @@ const CategoryFilter = (props) => {
     };
 
     let categories = [
-        <option value={null} selected={true}/>
+        <option key={'0'} value={""}/>
     ];
 
     props.categories.forEach(c => {
-        let isSelected = (props.selectedCategoryId === c.categoryId);
-
         categories.push(
-            <option value={c.categoryId}
-                    selected={isSelected}>
+            <option key={c.categoryId}
+                    value={c.categoryId}>
                 {c.categoryName}
             </option>
         );
@@ -24,7 +22,6 @@ const CategoryFilter = (props) => {
     return (
         <div>
             Select a category:
-
             <div>
                 <select value={props.selectedCategoryId}
                         onChange={onCategorySelect}>

@@ -19,7 +19,8 @@ const CartPage = (props) => {
     }
 
     let cartItems = props.cartItems
-        .map((cartItem) => <CartItem productId={cartItem.productId}
+        .map(cartItem => <CartItem key={cartItem.productId}
+                                     productId={cartItem.productId}
                                      productName={cartItem.productName}
                                      productPrice={cartItem.productPrice}
                                      quantity={cartItem.quantity}

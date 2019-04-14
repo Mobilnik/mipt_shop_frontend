@@ -1,4 +1,3 @@
-import React from 'react';
 import {connect} from "react-redux";
 import {deleteUnacceptedOrderCreator, fetchOrdersCreator, setMustFetchOrdersCreator} from "../../redux/ordersReducer";
 import OrderPage from "./OrderPage";

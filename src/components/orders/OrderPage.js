@@ -9,7 +9,8 @@ const OrderPage = (props) => {
     }
 
     let orders = props.orders
-        .map((order) => <Order id={order.id}
+        .map((order) => <Order key={order.id}
+                               id={order.id}
                                statusCode={order.statusCode}
                                changeDateTime={order.changeDateTime}
                                totalCost={order.totalCost}

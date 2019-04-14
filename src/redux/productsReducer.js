@@ -24,7 +24,7 @@ const initialState = {
 
     filters: {
         filterText: "",
-        selectedCategoryId: null,
+        selectedCategoryId: "",
         categories: [],
         minPrice: 0,
         maxPrice: 0
@@ -74,8 +74,9 @@ const productsReducer = (state = initialState, action) => {
         case PUT_PRODUCT_TO_CART:
             return putProductToCart(state, action);
 
+        default:
+            return state;
     }
-    return state;
 };
 
 const fetchProductsFulfilled = (state, action) => {

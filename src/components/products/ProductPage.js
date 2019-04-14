@@ -10,7 +10,8 @@ let ProductPage = (props) => {
     }
 
     let products = props.products
-        .map(product => <Product id={product.id}
+        .map(product => <Product key={product.id}
+                                 id={product.id}
                                  name={product.name}
                                  photoUrl={product.photoUrl}
                                  price={product.price}
