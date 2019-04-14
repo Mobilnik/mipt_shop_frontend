@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from "react-redux";
 import {deleteUnprocessedOrderCreator} from "../../redux/ordersReducer";
-import OrderList from "./OrderList";
+import OrderPage from "./OrderPage";
 
 
 let mapStateToProps = (state) => {
@@ -19,7 +19,7 @@ let mapDispatchToProps = (dispatch) => {
     };
 };
 
-let OrderListContainer = connect(mapStateToProps, mapDispatchToProps)(OrderList);
+let OrderPageContainer = connect(mapStateToProps, mapDispatchToProps)(OrderPage);
 
 
-export default OrderListContainer;
+export default OrderPageContainer;
