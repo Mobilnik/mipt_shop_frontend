@@ -16,48 +16,17 @@ let initialState = {
     fetched: false,
     error: null,
 
-    orders: [
-        {
-            id: 1,
-            userId: 1,
-            status: 1,
-            changeDateTime: '2019-03-21 23:00:43.573000',
-            comment: "Я глупый коммент №1",
-            totalCost: 150.0,
-            goods: [
-                {
-                    goodId: 1,
-                    quantity: 2,
-                }
-            ]
-        },
-        {
-            id: 2,
-            userId: 1,
-            status: 1,
-            changeDateTime: '2019-03-31 23:00:43.573000',
-            comment: "Я глупый коммент №2",
-            totalCost: 250.0,
-            goods: [
-                {
-                    goodId: 15,
-                    quantity: 4,
-                },
-                {
-                    goodId: 13,
-                    quantity: 1,
-                }
-            ]
-        },
-    ]
+    orders: []
 };
 
 const ordersReducer = (state = initialState, action) => {
-    console.log('ordersReducer');
-    console.log('action');
-    console.log(action);
-    console.log('state');
-    console.log(state);
+    if (!action.type.startsWith('@@redux/')) {
+        console.log('ordersReducer');
+        console.log('action');
+        console.log(action);
+        console.log('state');
+        console.log(state);
+    }
 
     switch (action.type) {
         case SET_MUST_FETCH_ORDERS:
@@ -81,11 +50,14 @@ const ordersReducer = (state = initialState, action) => {
             };
 
         case FETCH_ORDERS_FULFILLED:
+            console.log('payload');
+            console.log(action.payload.data);
+            let orders = prepareOrdersToDisplay(action.payload.data);
             return {
                 ...state,
                 fetching: false,
                 fetched: true,
-                orders: action.payload.data
+                orders: orders
             };
 
         case DELETE_UNPROCESSED_ORDER:
@@ -94,6 +66,23 @@ const ordersReducer = (state = initialState, action) => {
             return state;
     }
 };
+
+const prepareOrdersToDisplay = (orderDtos) => {
+    orderDtos.forEach(o => {
+        o.status = o.statusCode;
+        o.totalCost = calculateTotalCost(o.products);
+    });
+    return orderDtos;
+};
+
+const calculateTotalCost = (products) => {
+    let totalCost = 0;
+    products.forEach(p => {
+        totalCost += p.productPrice * p.quantity;
+    });
+    return totalCost;
+};
+
 
 const deleteUnprocessedOrder = (state, orderId) => {
     let stateCopy = {...state};
@@ -112,13 +101,16 @@ const findByOrderId = (array, orderId) => {
 
 //Action Creators
 export const setMustFetchCreator = (newValue) => {
+    console.log(SET_MUST_FETCH_ORDERS);
+    console.log(newValue);
     return {
         type: SET_MUST_FETCH_ORDERS,
         newValue: newValue
     }
 };
 
-export const fetchOrderCreator = () => {
+export const fetchOrdersCreator = () => {
+    console.log(FETCH_ORDERS);
     return {
         type: FETCH_ORDERS,
         payload: axios.get("http://localhost:8080/mipt-shop/orders")

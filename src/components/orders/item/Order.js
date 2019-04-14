@@ -4,7 +4,6 @@ import OrderStatus from "./OrderStatus";
 import CancelOrderButton from "./cancel/CancelOrderButton";
 
 const Order = (props) => {
-    console.log(props);
     return (
         <div className={`${s.orderWrapper}`}>
 
