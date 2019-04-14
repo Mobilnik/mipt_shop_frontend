@@ -20,7 +20,7 @@ const initialState = {
     error: null,
     cartItems: [],
     cartOrderComment: "",
-    totalCost: ""
+    totalCost: 0
 };
 
 const cartReducer = (state = initialState, action) => {

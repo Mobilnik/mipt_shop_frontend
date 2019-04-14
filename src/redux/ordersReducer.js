@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const DELETE_UNPROCESSED_ORDER = 'DELETE-UNPROCESSED-ORDER';
+const DELETE_UNACCEPTED_ORDER = 'DELETE_UNACCEPTED_ORDER';
 
 const SET_MUST_FETCH_ORDERS = 'SET_MUST_FETCH_ORDERS';
 const FETCH_ORDERS = 'FETCH_ORDERS';
@@ -60,8 +60,8 @@ const ordersReducer = (state = initialState, action) => {
                 orders: orders
             };
 
-        case DELETE_UNPROCESSED_ORDER:
-            return deleteUnprocessedOrder(state, action.orderId);
+        case DELETE_UNACCEPTED_ORDER:
+            return deleteUnacceptedOrder(state, action.orderId);
         default:
             return state;
     }
@@ -84,7 +84,7 @@ const calculateTotalCost = (products) => {
 };
 
 
-const deleteUnprocessedOrder = (state, orderId) => {
+const deleteUnacceptedOrder = (state, orderId) => {
     let stateCopy = {...state};
     stateCopy.orders = [...state.orders];
 
@@ -116,7 +116,7 @@ export const fetchOrdersCreator = () => {
 
 export const deleteUnacceptedOrderCreator = (orderId) => {
     return {
-        type: DELETE_UNPROCESSED_ORDER,
+        type: DELETE_UNACCEPTED_ORDER,
         orderId: orderId
     }
 };
