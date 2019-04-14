@@ -2,14 +2,15 @@ import CategoryFilter from "./CategoryFilter";
 import React from "react";
 import MaxPriceFilter from "./MaxPriceFilter";
 import MinPriceFilter from "./MinPriceFilter";
+import s from './ProductFilters.module.css';
 
 const ProductFilters = (props) => {
     return (
         <div>
-            <div>
+            <div className={s.filterHeader}>
                 Filters
             </div>
-            <div>
+            <div className={s.categoryFilter}>
                 <CategoryFilter categories={props.filters.categories}
                                 selectedCategoryId={props.filters.selectedCategoryId}
                                 selectCategory={props.selectCategory}/>

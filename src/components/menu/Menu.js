@@ -7,10 +7,7 @@ const Menu = () => {
         <nav>
             <div className={`${s.menu}`}>
                 <div className={`${s.menuItem}`}>
-                    <NavLink to='/profile' activeClassName={s.activeLink}> Profile </NavLink>
-                </div>
-                <div className={`${s.menuItem}`}>
-                    <NavLink to='/orders' activeClassName={s.activeLink}> Orders </NavLink>
+                    <NavLink to='/orders' activeClassName={s.activeLink}> My orders </NavLink>
                 </div>
                 <div className={`${s.menuItem}`}>
                     <NavLink to='/products' activeClassName={s.activeLink}> Products </NavLink>

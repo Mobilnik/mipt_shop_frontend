@@ -1,4 +1,5 @@
 import React from "react";
+import s from "./ProductFilters.module.css";
 
 const MinPriceFilter = (props) => {
     const onMinPriceChange = (event) => {
@@ -9,7 +10,8 @@ const MinPriceFilter = (props) => {
         <div>
             Min price
             <div>
-                <input type={'number'}
+                <input className={s.priceLimitFilter}
+                       type={'number'}
                        onChange={onMinPriceChange}
                        value={props.minPrice}
                 >
