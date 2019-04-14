@@ -1,10 +1,9 @@
 import React from "react";
+import ProductFiltersContainer from "./filters/ProductFiltersContainer";
 
 const ProductPageSidebar = () => {
     return (
-        <div>
-            Тут будут фильтры
-        </div>
+        <ProductFiltersContainer/>
     )
 };
 

@@ -6,6 +6,9 @@ const FETCH_PRODUCTS_PENDING = 'FETCH_PRODUCTS_PENDING';
 const FETCH_PRODUCTS_REJECTED = 'FETCH_PRODUCTS_REJECTED';
 const FETCH_PRODUCTS_FULFILLED = 'FETCH_PRODUCTS_FULFILLED';
 
+const SELECT_PRODUCT_CATEGORY = 'SELECT_PRODUCT_CATEGORY';
+const UPDATE_MIN_PRICE_FILTER = 'UPDATE_MIN_PRICE_FILTER';
+const UPDATE_MAX_PRICE_FILTER = 'UPDATE_MAX_PRICE_FILTER';
 const FILTER_PRODUCTS = 'FILTER_PRODUCTS';
 
 const initialState = {
@@ -19,7 +22,7 @@ const initialState = {
 
     filters: {
         filterText: "",
-        selectedCategory: null,
+        selectedCategoryId: null,
         categories: [],
         minPrice: 0,
         maxPrice: 0
@@ -56,28 +59,52 @@ const productsReducer = (state = initialState, action) => {
             };
 
         case FETCH_PRODUCTS_FULFILLED:
-            let newState = {
+            return fetchProductsFulfilled(state, action);
+
+        case SELECT_PRODUCT_CATEGORY:
+            return selectProductCategory(state, action);
+
+        case UPDATE_MIN_PRICE_FILTER:
+            return {
                 ...state,
-                fetching: false,
-                fetched: true,
-                products: action.payload.data,
                 filters: {
                     ...state.filters,
+                    minPrice: action.newValue
                 }
             };
-            newState.products.forEach(p => p.hidden = false);
-            newState.filters.categories = buildProductCategories(newState.products);
-            newState.filters.minPrice = findMinPrice(newState.products);
-            newState.filters.maxPrice = findMaxPrice(newState.products);
-            return newState;
 
-        case
-        FILTER_PRODUCTS:
-            return filterProducts(state, action.filterText);
+        case UPDATE_MAX_PRICE_FILTER:
+            return {
+                ...state,
+                filters: {
+                    ...state.filters,
+                    minPrice: action.newValue
+                }
+            };
+
+        case FILTER_PRODUCTS:
+            return filterProducts(state, action.newValue);
 
         //todo add product to cart
     }
     return state;
+};
+
+const fetchProductsFulfilled = (state, action) => {
+    let stateCopy = {
+        ...state,
+        fetching: false,
+        fetched: true,
+        products: action.payload.data,
+        filters: {
+            ...state.filters,
+        }
+    };
+    stateCopy.products.forEach(p => p.hidden = false);
+    stateCopy.filters.categories = buildProductCategories(stateCopy.products);
+    stateCopy.filters.minPrice = findMinPrice(stateCopy.products);
+    stateCopy.filters.maxPrice = findMaxPrice(stateCopy.products);
+    return stateCopy;
 };
 
 const buildProductCategories = (products) => {
@@ -120,9 +147,6 @@ const findMaxPrice = (products) => {
     return maxPrice;
 };
 
-
-
-
 const filterProducts = (state, filterText) => {
     let stateCopy = {...state};
     stateCopy.products = [...stateCopy.products];
@@ -139,7 +163,15 @@ const filterProducts = (state, filterText) => {
     return stateCopy;
 };
 
-
+const selectProductCategory = (state, action) => {
+    return {
+        ...state,
+        filters: {
+            ...state.filters,
+            selectedCategoryId: action.categoryId
+        },
+    };
+};
 
 //Action Creators
 export const setMustFetchCreator = (newValue) => {
@@ -156,11 +188,32 @@ export const fetchProductsCreator = () => {
     }
 };
 
+export const selectProductCategoryCreator = (categoryId) => {
+    return {
+        type: SELECT_PRODUCT_CATEGORY,
+        categoryId: categoryId
+    }
+};
 
-export const filterProductsCreator = (filterText) => {
+
+export const updateMinPriceFilterCreator = (newValue) => {
+    return {
+        type: UPDATE_MIN_PRICE_FILTER,
+        newValue: newValue
+    }
+};
+
+export const updateMaxPriceFilterCreator = (newValue) => {
+    return {
+        type: UPDATE_MAX_PRICE_FILTER,
+        newValue: newValue
+    }
+};
+
+export const filterProductsCreator = (newValue) => {
     return {
         type: FILTER_PRODUCTS,
-        filterText: filterText
+        newValue: newValue
     }
 };
 

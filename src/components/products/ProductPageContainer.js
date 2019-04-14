@@ -5,7 +5,7 @@ import {fetchProductsCreator, filterProductsCreator, setMustFetchCreator} from "
 
 let mapStateToProps = (state) => {
     return {
-        filterText: state.productsPage.filterText,
+        filterText: state.productsPage.filters.filterText,
         products: state.productsPage.products,
         mustFetch: state.productsPage.mustFetch
     };

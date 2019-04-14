@@ -5,7 +5,7 @@ import ProductPageContainer from "./components/products/ProductPageContainer";
 import OrderPageContainer from "./components/orders/OrderPageContainer";
 import CartPageContainer from "./components/cart/CartPageContainer";
 import s from './MiptShopApp.module.css'
-import ProductPageSidebar from "./components/products/ProductPageSidebar";
+import ProductPageSidebar from "./components/products/sidebar/ProductPageSidebar";
 
 const MiptShopApp = (props) => {
     return (
