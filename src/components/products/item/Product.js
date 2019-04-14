@@ -7,8 +7,8 @@ const Product = (props) => {
         return null;
     }
 
-    const myFunction = () => {
-        alert("Fix me!")
+    const onCartButtonClick = () => {
+        props.putProductToCart(props.id);
     };
 
     return (
@@ -27,7 +27,7 @@ const Product = (props) => {
                 </div>
             </div>
             <div className={`${styles.productItemAddButton}`}>
-                <img src="/images/cart.png" onClick={myFunction}/>
+                <img src="/images/cart.png" onClick={onCartButtonClick}/>
             </div>
         </div>
     )

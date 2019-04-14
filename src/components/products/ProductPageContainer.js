@@ -1,7 +1,13 @@
 import React from 'react';
 import {connect} from "react-redux";
 import ProductPage from "./ProductPage";
-import {fetchProductsCreator, updateProductFilterTextCreator, setMustFetchCreator} from "../../redux/productsReducer";
+import {
+    fetchProductsCreator,
+    updateProductFilterTextCreator,
+    setMustFetchProductsCreator,
+    putProductToCartCreator
+} from "../../redux/productsReducer";
+import {setMustFetchCartCreator} from "../../redux/cartReducer";
 
 let mapStateToProps = (state) => {
     return {
@@ -14,13 +20,17 @@ let mapStateToProps = (state) => {
 let mapDispatchToProps = (dispatch) => {
     return {
         setMustFetch: (newValue) => {
-          dispatch(setMustFetchCreator(newValue));
+          dispatch(setMustFetchProductsCreator(newValue));
         },
         fetchProducts: () => {
             dispatch(fetchProductsCreator());
         },
         updateProductFilterText: (newValue) => {
             dispatch(updateProductFilterTextCreator(newValue));
+        },
+        putProductToCart: (productId) => {
+            dispatch(putProductToCartCreator(productId));
+            dispatch(setMustFetchCartCreator(true));
         }
     };
 };

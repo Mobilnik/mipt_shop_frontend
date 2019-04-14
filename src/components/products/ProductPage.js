@@ -14,7 +14,8 @@ let ProductPage = (props) => {
                                  name={product.name}
                                  photoUrl={product.photoUrl}
                                  price={product.price}
-                                 hidden={product.hidden}/>);
+                                 hidden={product.hidden}
+                                 putProductToCart={props.putProductToCart}/>);
 
     const onFilterTextChange = (event) => {
         props.updateProductFilterText(event.target.value);

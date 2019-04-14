@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {deleteUnacceptedOrderCreator, fetchOrdersCreator, setMustFetchCreator} from "../../redux/ordersReducer";
+import {deleteUnacceptedOrderCreator, fetchOrdersCreator, setMustFetchOrdersCreator} from "../../redux/ordersReducer";
 import OrderPage from "./OrderPage";
 
 
@@ -15,7 +15,7 @@ let mapStateToProps = (state) => {
 let mapDispatchToProps = (dispatch) => {
     return {
         setMustFetch: (newValue) => {
-            dispatch(setMustFetchCreator(newValue));
+            dispatch(setMustFetchOrdersCreator(newValue));
         },
         fetchOrders: () => {
             dispatch(fetchOrdersCreator());

@@ -11,6 +11,8 @@ const UPDATE_MIN_PRICE_FILTER = 'UPDATE_MIN_PRICE_FILTER';
 const UPDATE_MAX_PRICE_FILTER = 'UPDATE_MAX_PRICE_FILTER';
 const UPDATE_PRODUCT_FILTER_TEXT = 'UPDATE_PRODUCT_FILTER_TEXT';
 
+const PUT_PRODUCT_TO_CART = 'PUT_PRODUCT_TO_CART';
+
 const initialState = {
     //todo hack
     mustFetch: true,
@@ -77,7 +79,9 @@ const productsReducer = (state = initialState, action) => {
             stateToFilter = updateProductFilterText(state, action);
             return applyFilters(stateToFilter);
 
-        //todo add product to cart
+        case PUT_PRODUCT_TO_CART:
+            return putProductToCart(state, action);
+
     }
     return state;
 };
@@ -150,16 +154,12 @@ const applyFilters = (state) => {
             if (!p.name.toLowerCase().includes(filterTextLowerCase)) {
                 p.hidden = true;
             } else if (p.price < stateCopy.filters.minPrice) {
-                console.log(p.price);
-                console.log(stateCopy.filters.minPrice);
                 p.hidden = true;
             } else if (p.price > stateCopy.filters.maxPrice) {
                 p.hidden = true;
             } else if (stateCopy.filters.selectedCategoryId !== null &&
                 stateCopy.filters.selectedCategoryId !== "" &&
                 p.categoryId !== stateCopy.filters.selectedCategoryId) {
-                console.log(p.categoryId);
-                console.log(stateCopy.filters.selectedCategoryId);
                 p.hidden = true;
             } else {
                 p.hidden = false;
@@ -209,9 +209,14 @@ const updateProductFilterText = (state, action) => {
     };
 };
 
+const putProductToCart = (state, action) => {
+    axios.post("http://localhost:8080/mipt-shop/orders/create_cart_item?productId=" + action.productId);
+    return state;
+};
+
 
 //Action Creators
-export const setMustFetchCreator = (newValue) => {
+export const setMustFetchProductsCreator = (newValue) => {
     return {
         type: SET_MUST_FETCH_PRODUCTS,
         newValue: newValue
@@ -253,5 +258,11 @@ export const updateProductFilterTextCreator = (newValue) => {
     }
 };
 
+export const putProductToCartCreator = (productId) => {
+    return {
+        type: PUT_PRODUCT_TO_CART,
+        productId: productId
+    }
+};
 
 export default productsReducer;

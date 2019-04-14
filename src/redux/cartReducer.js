@@ -15,7 +15,7 @@ const CREATE_NEW_ORDER_FROM_CART = 'CREATE-NEW-ORDER-FROM-CART';
 const initialState = {
     //todo hack
     mustFetch: true,
-
+    orderId: null,
     fetching: false,
     fetched: false,
     error: null,
@@ -59,6 +59,7 @@ const cartReducer = (state = initialState, action) => {
                 ...state,
                 fetching: false,
                 fetched: true,
+                orderId: action.payload.data.id,
                 cartItems: action.payload.data.products,
                 totalCost: calculateTotalCost(action.payload.data.products)
             };
@@ -95,17 +96,23 @@ const updateCartItemQuantity = (state, productId, newValue) => {
         itemToChange.quantity = parseInt(newValue, 10);
     }
 
+    httpUpdateCartItemQuantity(itemToChange);
+
     stateCopy.totalCost = calculateTotalCost(stateCopy.cartItems);
 
     return stateCopy;
 };
 
-const calculateTotalCost = (cartItems) => {
-    let totalCost = 0;
-    cartItems.forEach(p => {
-        totalCost += p.productPrice * p.quantity;
-    });
-    return totalCost;
+const httpUpdateCartItemQuantity = (itemToChange) => {
+    axios.post("http://localhost:8080/mipt-shop/orders/update_cart_item",
+        buildOrderProductDto(itemToChange));
+};
+
+const buildOrderProductDto = (item) => {
+    return {
+        productId: item.productId,
+        quantity: item.quantity
+    };
 };
 
 const deleteCartItem = (state, productId) => {
@@ -115,9 +122,24 @@ const deleteCartItem = (state, productId) => {
     let itemToDelete = findByProductId(stateCopy.cartItems, productId);
     let itemToDeleteIndex = stateCopy.cartItems.indexOf(itemToDelete);
 
+    httpDeleteCartItem(itemToDelete);
+
     stateCopy.cartItems.splice(itemToDeleteIndex, 1);
     stateCopy.totalCost = calculateTotalCost(stateCopy.cartItems);
     return stateCopy;
+};
+
+const httpDeleteCartItem = (itemToDelete) => {
+    axios.post("http://localhost:8080/mipt-shop/orders/delete_cart_item",
+        buildOrderProductDto(itemToDelete));
+};
+
+const calculateTotalCost = (cartItems) => {
+    let totalCost = 0;
+    cartItems.forEach(p => {
+        totalCost += p.productPrice * p.quantity;
+    });
+    return totalCost;
 };
 
 const findByProductId = (array, productId) => {
@@ -132,18 +154,13 @@ const updateCartOrderComment = (state, newText) => {
 };
 
 const createNewOrderFromCart = (state) => {
-    //fixme
-    /*let order = {
-        id: 3,
-        userId: 1,
-        status: 0,
-        changeDateTime: new Date().getUTCDate(),
-        comment: state.cartOrderComment,
-        products: state.cartItems
-    };
-     state.orders.push(order);*/
-
     let stateCopy = {...state};
+
+    let createOrderFromCartPostDto = {
+        comment: stateCopy.cartOrderComment
+    };
+    axios.post("http://localhost:8080/mipt-shop/orders/create_from_cart",
+        createOrderFromCartPostDto);
 
     stateCopy.cartItems = [];
     stateCopy.cartOrderComment = "";
@@ -153,7 +170,7 @@ const createNewOrderFromCart = (state) => {
 
 
 //Action Creators
-export const setMustFetchCreator = (newValue) => {
+export const setMustFetchCartCreator = (newValue) => {
     return {
         type: SET_MUST_FETCH_CART,
         newValue: newValue

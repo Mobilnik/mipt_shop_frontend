@@ -100,7 +100,7 @@ const findByOrderId = (array, orderId) => {
 };
 
 //Action Creators
-export const setMustFetchCreator = (newValue) => {
+export const setMustFetchOrdersCreator = (newValue) => {
     return {
         type: SET_MUST_FETCH_ORDERS,
         newValue: newValue

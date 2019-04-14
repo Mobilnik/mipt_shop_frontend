@@ -5,11 +5,11 @@ import {
     updateCartItemQuantityCreator,
     deleteCartItemCreator,
     fetchCartCreator,
-    setMustFetchCreator
+    setMustFetchCartCreator
 } from "../../redux/cartReducer";
 import CartPage from "./CartPage";
 import {connect} from "react-redux";
-import {push} from "react-router-redux";
+import {setMustFetchOrdersCreator} from "../../redux/ordersReducer";
 
 //При любых изменениях connect пытается перерисовать этот объект.
 //Проверка на наличие изменений проводится через сравнение ссылок на объекты.
@@ -26,7 +26,7 @@ let mapStateToProps = (state) => {
 let mapDispatchToProps = (dispatch) => {
     return {
         setMustFetch: (newValue) => {
-            dispatch(setMustFetchCreator(newValue));
+            dispatch(setMustFetchCartCreator(newValue));
         },
         fetchCart: () => {
             dispatch(fetchCartCreator());
@@ -48,7 +48,9 @@ let mapDispatchToProps = (dispatch) => {
 
         saveCartAsOrder: () => {
             dispatch(createNewOrderCreator());
-            dispatch(push('/orders'))
+            dispatch(setMustFetchOrdersCreator(true));
+            //import {push} from "react-router-redux";
+            //dispatch(push('/orders')) -- Если хотите использовать редиректы.
         }
     };
 };
