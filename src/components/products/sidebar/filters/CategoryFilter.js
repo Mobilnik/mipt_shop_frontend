@@ -26,7 +26,8 @@ const CategoryFilter = (props) => {
             Select a category:
 
             <div>
-                <select onChange={onCategorySelect}>
+                <select value={props.selectedCategoryId}
+                        onChange={onCategorySelect}>
                     {categories}
                 </select>
             </div>
