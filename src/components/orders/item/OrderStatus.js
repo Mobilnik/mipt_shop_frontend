@@ -1,7 +1,7 @@
 import React from "react";
 
 const OrderStatus = (props) => {
-    switch (props.status) {
+    switch (props.statusCode) {
         case -1:
             return (
                 <div>

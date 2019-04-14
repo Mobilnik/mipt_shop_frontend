@@ -69,7 +69,6 @@ const ordersReducer = (state = initialState, action) => {
 
 const prepareOrdersToDisplay = (orderDtos) => {
     orderDtos.forEach(o => {
-        o.status = o.statusCode;
         o.totalCost = calculateTotalCost(o.products);
     });
     return orderDtos;

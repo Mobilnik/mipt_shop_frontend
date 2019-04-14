@@ -20,11 +20,11 @@ const Order = (props) => {
             </div>
 
             <div className={s.orderStatus}>
-                <OrderStatus status={props.status}/>
+                <OrderStatus statusCode={props.statusCode}/>
             </div>
 
             <CancelOrderButton id={props.id}
-                               status={props.status}
+                               statusCode={props.statusCode}
                                deleteUnprocessedOrder={props.deleteUnprocessedOrder}
             />
 

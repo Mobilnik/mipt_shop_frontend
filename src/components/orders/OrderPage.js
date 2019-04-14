@@ -10,7 +10,7 @@ const OrderPage = (props) => {
 
     let orders = props.orders
         .map((order) => <Order id={order.id}
-                               status={order.status}
+                               statusCode={order.statusCode}
                                changeDateTime={order.changeDateTime}
                                totalCost={order.totalCost}
                                comment={order.comment}
