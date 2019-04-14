@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from "react-redux";
 import ProductPage from "./ProductPage";
-import {fetchProductsCreator, filterProductsCreator, setMustFetchCreator} from "../../redux/productsReducer";
+import {fetchProductsCreator, updateProductFilterTextCreator, setMustFetchCreator} from "../../redux/productsReducer";
 
 let mapStateToProps = (state) => {
     return {
@@ -19,9 +19,8 @@ let mapDispatchToProps = (dispatch) => {
         fetchProducts: () => {
             dispatch(fetchProductsCreator());
         },
-        filterProducts: (event) => {
-            let newText = event.target.value;
-            dispatch(filterProductsCreator(newText));
+        updateProductFilterText: (newValue) => {
+            dispatch(updateProductFilterTextCreator(newValue));
         }
     };
 };

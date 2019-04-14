@@ -9,6 +9,7 @@ const FETCH_PRODUCTS_FULFILLED = 'FETCH_PRODUCTS_FULFILLED';
 const SELECT_PRODUCT_CATEGORY = 'SELECT_PRODUCT_CATEGORY';
 const UPDATE_MIN_PRICE_FILTER = 'UPDATE_MIN_PRICE_FILTER';
 const UPDATE_MAX_PRICE_FILTER = 'UPDATE_MAX_PRICE_FILTER';
+const UPDATE_PRODUCT_FILTER_TEXT = 'UPDATE_PRODUCT_FILTER_TEXT';
 const FILTER_PRODUCTS = 'FILTER_PRODUCTS';
 
 const initialState = {
@@ -65,22 +66,13 @@ const productsReducer = (state = initialState, action) => {
             return selectProductCategory(state, action);
 
         case UPDATE_MIN_PRICE_FILTER:
-            return {
-                ...state,
-                filters: {
-                    ...state.filters,
-                    minPrice: action.newValue
-                }
-            };
+            return updateMinPriceFilter(state, action);
 
         case UPDATE_MAX_PRICE_FILTER:
-            return {
-                ...state,
-                filters: {
-                    ...state.filters,
-                    minPrice: action.newValue
-                }
-            };
+            return updateMaxPriceFilter(state, action);
+
+        case UPDATE_PRODUCT_FILTER_TEXT:
+            return updateProductFilterText(state, action);
 
         case FILTER_PRODUCTS:
             return filterProducts(state, action.newValue);
@@ -173,6 +165,37 @@ const selectProductCategory = (state, action) => {
     };
 };
 
+const updateMinPriceFilter = (state, action) => {
+    return {
+        ...state,
+        filters: {
+            ...state.filters,
+            minPrice: action.newValue
+        }
+    };
+};
+
+const updateMaxPriceFilter = (state, action) => {
+    return {
+        ...state,
+        filters: {
+            ...state.filters,
+            maxPrice: action.newValue
+        }
+    };
+};
+
+const updateProductFilterText = (state, action) => {
+    return {
+        ...state,
+        filters: {
+            ...state.filters,
+            filterText: action.newValue
+        },
+    };
+};
+
+
 //Action Creators
 export const setMustFetchCreator = (newValue) => {
     return {
@@ -195,7 +218,6 @@ export const selectProductCategoryCreator = (categoryId) => {
     }
 };
 
-
 export const updateMinPriceFilterCreator = (newValue) => {
     return {
         type: UPDATE_MIN_PRICE_FILTER,
@@ -210,9 +232,9 @@ export const updateMaxPriceFilterCreator = (newValue) => {
     }
 };
 
-export const filterProductsCreator = (newValue) => {
+export const updateProductFilterTextCreator = (newValue) => {
     return {
-        type: FILTER_PRODUCTS,
+        type: UPDATE_PRODUCT_FILTER_TEXT,
         newValue: newValue
     }
 };
