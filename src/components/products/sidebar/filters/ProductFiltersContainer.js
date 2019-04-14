@@ -5,6 +5,7 @@ import {
     updateMaxPriceFilterCreator,
     updateMinPriceFilterCreator
 } from "../../../../redux/productsReducer";
+import {isCorrectFloat} from "../../../lib";
 
 let mapStateToProps = (state) => {
     return {
@@ -18,10 +19,14 @@ let mapDispatchToProps = (dispatch) => {
             dispatch(selectProductCategoryCreator(categoryId));
         },
         updateMinPrice: (newValue) => {
-            dispatch(updateMinPriceFilterCreator(newValue));
+            if (isCorrectFloat(newValue)) {
+                dispatch(updateMinPriceFilterCreator(newValue));
+            }
         },
         updateMaxPrice: (newValue) => {
-            dispatch(updateMaxPriceFilterCreator(newValue));
+            if (isCorrectFloat(newValue)) {
+                dispatch(updateMaxPriceFilterCreator(newValue));
+            }
         }
     };
 };

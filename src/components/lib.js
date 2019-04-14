@@ -7,3 +7,8 @@ export const convertJsDateToStringToDisplay = (date) => {
         + (parseInt(date.getMinutes(), 10) < 10 ? "0" + (parseInt(date.getMinutes(), 10)) : date.getMinutes()) + ":"
         + (parseInt(date.getSeconds(), 10) < 10 ? "0" + (parseInt(date.getSeconds(), 10)) : date.getSeconds()));
 };
+
+export const isCorrectFloat = (str) => {
+    let num = parseFloat(str);
+    return !isNaN(num);
+};

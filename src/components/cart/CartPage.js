@@ -43,9 +43,6 @@ const CartPage = (props) => {
         )
     }
 
-
-    console.log('PROPS');
-    console.log(props);
     return (
         <div className={s.cartPageWrapper}>
             <div className={s.cartPageGrid}>

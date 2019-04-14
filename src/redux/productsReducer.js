@@ -10,7 +10,6 @@ const SELECT_PRODUCT_CATEGORY = 'SELECT_PRODUCT_CATEGORY';
 const UPDATE_MIN_PRICE_FILTER = 'UPDATE_MIN_PRICE_FILTER';
 const UPDATE_MAX_PRICE_FILTER = 'UPDATE_MAX_PRICE_FILTER';
 const UPDATE_PRODUCT_FILTER_TEXT = 'UPDATE_PRODUCT_FILTER_TEXT';
-const FILTER_PRODUCTS = 'FILTER_PRODUCTS';
 
 const initialState = {
     //todo hack
@@ -63,19 +62,20 @@ const productsReducer = (state = initialState, action) => {
             return fetchProductsFulfilled(state, action);
 
         case SELECT_PRODUCT_CATEGORY:
-            return selectProductCategory(state, action);
+            let stateToFilter = selectProductCategory(state, action);
+            return applyFilters(stateToFilter);
 
         case UPDATE_MIN_PRICE_FILTER:
-            return updateMinPriceFilter(state, action);
+            stateToFilter = updateMinPriceFilter(state, action);
+            return applyFilters(stateToFilter);
 
         case UPDATE_MAX_PRICE_FILTER:
-            return updateMaxPriceFilter(state, action);
+            stateToFilter = updateMaxPriceFilter(state, action);
+            return applyFilters(stateToFilter);
 
         case UPDATE_PRODUCT_FILTER_TEXT:
-            return updateProductFilterText(state, action);
-
-        case FILTER_PRODUCTS:
-            return filterProducts(state, action.newValue);
+            stateToFilter = updateProductFilterText(state, action);
+            return applyFilters(stateToFilter);
 
         //todo add product to cart
     }
@@ -139,18 +139,32 @@ const findMaxPrice = (products) => {
     return maxPrice;
 };
 
-const filterProducts = (state, filterText) => {
+const applyFilters = (state) => {
     let stateCopy = {...state};
     stateCopy.products = [...stateCopy.products];
-    stateCopy.filters.filterText = filterText;
+
     const filterTextLowerCase = stateCopy.filters.filterText.toLowerCase();
 
-    stateCopy.products.forEach(product => {
-        if (!product.name.toLowerCase().includes(filterTextLowerCase))
-            product.hidden = true;
-        else
-            product.hidden = false;
-    });
+    stateCopy.products
+        .forEach(p => {
+            if (!p.name.toLowerCase().includes(filterTextLowerCase)) {
+                p.hidden = true;
+            } else if (p.price < stateCopy.filters.minPrice) {
+                console.log(p.price);
+                console.log(stateCopy.filters.minPrice);
+                p.hidden = true;
+            } else if (p.price > stateCopy.filters.maxPrice) {
+                p.hidden = true;
+            } else if (stateCopy.filters.selectedCategoryId !== null &&
+                stateCopy.filters.selectedCategoryId !== "" &&
+                p.categoryId !== stateCopy.filters.selectedCategoryId) {
+                console.log(p.categoryId);
+                console.log(stateCopy.filters.selectedCategoryId);
+                p.hidden = true;
+            } else {
+                p.hidden = false;
+            }
+        });
 
     return stateCopy;
 };
@@ -170,7 +184,7 @@ const updateMinPriceFilter = (state, action) => {
         ...state,
         filters: {
             ...state.filters,
-            minPrice: action.newValue
+            minPrice: parseFloat(action.newValue)
         }
     };
 };
@@ -180,7 +194,7 @@ const updateMaxPriceFilter = (state, action) => {
         ...state,
         filters: {
             ...state.filters,
-            maxPrice: action.newValue
+            maxPrice: parseFloat(action.newValue)
         }
     };
 };
@@ -214,7 +228,7 @@ export const fetchProductsCreator = () => {
 export const selectProductCategoryCreator = (categoryId) => {
     return {
         type: SELECT_PRODUCT_CATEGORY,
-        categoryId: categoryId
+        categoryId: parseInt(categoryId, 10)
     }
 };
 
