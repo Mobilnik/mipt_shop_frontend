@@ -2,6 +2,7 @@ import React from 'react';
 import s from './Order.module.css'
 import OrderStatus from "./OrderStatus";
 import CancelOrderButton from "./cancel/CancelOrderButton";
+import {convertJsDateToStringToDisplay} from "../../lib";
 
 const Order = (props) => {
     return (
@@ -12,7 +13,7 @@ const Order = (props) => {
             </div>
 
             <div className={s.orderDateUpdated}>
-                Status updated: {props.changeDateTime}
+                Status updated: {convertJsDateToStringToDisplay(props.updatedDateTime)}
             </div>
 
             <div className={s.orderTotalCost}>

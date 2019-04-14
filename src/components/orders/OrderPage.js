@@ -14,6 +14,7 @@ const OrderPage = (props) => {
                                changeDateTime={order.changeDateTime}
                                totalCost={order.totalCost}
                                comment={order.comment}
+                               updatedDateTime={order.updatedDateTime}
                                deleteUnprocessedOrder={props.deleteUnprocessedOrder}/>);
 
     if (orders.length === 0) {

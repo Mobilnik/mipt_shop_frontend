@@ -69,6 +69,7 @@ const ordersReducer = (state = initialState, action) => {
 
 const prepareOrdersToDisplay = (orderDtos) => {
     orderDtos.forEach(o => {
+        o.updatedDateTime = new Date(o.updatedDateTime + "Z"); //начинаем воспринимать пришедшее время как время в UTC
         o.totalCost = calculateTotalCost(o.products);
     });
     return orderDtos;
@@ -100,8 +101,6 @@ const findByOrderId = (array, orderId) => {
 
 //Action Creators
 export const setMustFetchCreator = (newValue) => {
-    console.log(SET_MUST_FETCH_ORDERS);
-    console.log(newValue);
     return {
         type: SET_MUST_FETCH_ORDERS,
         newValue: newValue
@@ -109,7 +108,6 @@ export const setMustFetchCreator = (newValue) => {
 };
 
 export const fetchOrdersCreator = () => {
-    console.log(FETCH_ORDERS);
     return {
         type: FETCH_ORDERS,
         payload: axios.get("http://localhost:8080/mipt-shop/orders")
