@@ -20,7 +20,7 @@ let initialState = {
         {
             id: 1,
             userId: 1,
-            status: -1,
+            status: 1,
             changeDateTime: '2019-03-21 23:00:43.573000',
             comment: "Я глупый коммент №1",
             totalCost: 150.0,
@@ -89,20 +89,26 @@ const ordersReducer = (state = initialState, action) => {
             };
 
         case DELETE_UNPROCESSED_ORDER:
-            return deleteUnprocessedOrder(state, action.orderIdx);
+            return deleteUnprocessedOrder(state, action.orderId);
         default:
             return state;
     }
 };
 
-const deleteUnprocessedOrder = (state, orderIdx) => {
+const deleteUnprocessedOrder = (state, orderId) => {
     let stateCopy = {...state};
-    stateCopy.orders = [...stateCopy.orders];
-    stateCopy.orders.splice(orderIdx, 1);
+    stateCopy.orders = [...state.orders];
 
+    let orderToDelete = findByOrderId(stateCopy.orders, orderId);
+    let orderToDeleteIndex = stateCopy.orders.indexOf(orderToDelete);
+
+    stateCopy.orders.splice(orderToDeleteIndex, 1);
     return stateCopy;
 };
 
+const findByOrderId = (array, orderId) => {
+    return array.filter(item => item.id === orderId)[0];
+};
 
 //Action Creators
 export const setMustFetchCreator = (newValue) => {
@@ -112,17 +118,17 @@ export const setMustFetchCreator = (newValue) => {
     }
 };
 
-export const fetchCartCreator = () => {
+export const fetchOrderCreator = () => {
     return {
         type: FETCH_ORDERS,
         payload: axios.get("http://localhost:8080/mipt-shop/orders")
     }
 };
 
-export const deleteUnprocessedOrderCreator = (orderIdx) => {
+export const deleteUnacceptedOrderCreator = (orderId) => {
     return {
         type: DELETE_UNPROCESSED_ORDER,
-        orderIdx: orderIdx
+        orderId: orderId
     }
 };
 

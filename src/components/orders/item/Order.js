@@ -24,8 +24,9 @@ const Order = (props) => {
                 <OrderStatus status={props.status}/>
             </div>
 
-            <CancelOrderButton status={props.status}
-                                          deleteUnprocessedOrder={props.deleteUnprocessedOrder}
+            <CancelOrderButton id={props.id}
+                               status={props.status}
+                               deleteUnprocessedOrder={props.deleteUnprocessedOrder}
             />
 
             <div className={s.orderComment}>
