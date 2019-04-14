@@ -19,11 +19,12 @@ const initialState = {
     fetched: false,
     error: null,
     cartItems: [],
-    cartOrderComment: ""
+    cartOrderComment: "",
+    totalCost: ""
 };
 
 const cartReducer = (state = initialState, action) => {
-    if(!action.type.startsWith('@@redux/')) {
+    if (!action.type.startsWith('@@redux/')) {
         console.log('cartReducer');
         console.log('action');
         console.log(action);
@@ -57,7 +58,8 @@ const cartReducer = (state = initialState, action) => {
                 ...state,
                 fetching: false,
                 fetched: true,
-                cartItems: action.payload.data.products
+                cartItems: action.payload.data.products,
+                totalCost: calculateTotalCost(action.payload.data.products)
             };
 
 
@@ -92,7 +94,17 @@ const updateCartItemQuantity = (state, productId, newValue) => {
         itemToChange.quantity = parseInt(newValue, 10);
     }
 
+    stateCopy.totalCost = calculateTotalCost(stateCopy.cartItems);
+
     return stateCopy;
+};
+
+const calculateTotalCost = (cartItems) => {
+    let totalCost = 0;
+    cartItems.forEach(p => {
+        totalCost += p.productPrice * p.quantity;
+    });
+    return totalCost;
 };
 
 const deleteCartItem = (state, productId) => {
@@ -103,6 +115,7 @@ const deleteCartItem = (state, productId) => {
     let itemToDeleteIndex = stateCopy.cartItems.indexOf(itemToDelete);
 
     stateCopy.cartItems.splice(itemToDeleteIndex, 1);
+    stateCopy.totalCost = calculateTotalCost(stateCopy.cartItems);
     return stateCopy;
 };
 

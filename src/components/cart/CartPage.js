@@ -43,6 +43,9 @@ const CartPage = (props) => {
         )
     }
 
+
+    console.log('PROPS');
+    console.log(props);
     return (
         <div className={s.cartPageWrapper}>
             <div className={s.cartPageGrid}>
@@ -50,6 +53,9 @@ const CartPage = (props) => {
             </div>
 
             <div className={s.cartPageInnerWrapper}>
+                <div className={s.totalCost}>
+                    Total: ₽{props.totalCost}
+                </div>
                 <textarea className={s.comment}
                           value={props.cartOrderComment}
                           onChange={onCartOrderCommentChange}
@@ -57,7 +63,7 @@ const CartPage = (props) => {
                 />
 
                 <div className={`${s.saveButton}`}>
-                    <img src="/images/save-button.png" alt={'No image provided'} onClick={saveCartAsOrder}/>
+                    <img src="/images/save-button.png" onClick={saveCartAsOrder}/>
                 </div>
             </div>
         </div>

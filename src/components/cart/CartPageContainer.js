@@ -16,6 +16,7 @@ import {push} from "react-router-redux";
 //Если ссылки равны, объект не будет перерисован. Поэтому нам нужны копии (оператор ...)
 let mapStateToProps = (state) => {
     return {
+        totalCost: state.cartPage.totalCost,
         cartItems: state.cartPage.cartItems,
         cartOrderComment: state.cartPage.cartOrderComment,
         mustFetch: state.cartPage.mustFetch

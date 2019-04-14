@@ -28,9 +28,18 @@
 
     padding-top: 1rem;
     display: grid;
-    grid-template-areas: "comment saveButton";
+    grid-template-areas: "totalCost totalCost" "comment saveButton";
     grid-template-columns: 4fr 1fr;
     grid-gap: 10px;
+}
+
+.cartPageInnerWrapper .totalCost {
+    grid-area: totalCost;
+
+    margin-left: 61%;
+
+    font-weight: bolder;
+    font-size: 16px;
 }
 
 .cartPageInnerWrapper .comment {
