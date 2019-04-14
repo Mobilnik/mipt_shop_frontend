@@ -32,14 +32,6 @@ const initialState = {
 };
 
 const productsReducer = (state = initialState, action) => {
-    if (!action.type.startsWith('@@redux/')) {
-        console.log('productsReducer');
-        console.log('action');
-        console.log(action);
-        console.log('state');
-        console.log(state);
-    }
-
     switch (action.type) {
         case SET_MUST_FETCH_PRODUCTS:
             return {
